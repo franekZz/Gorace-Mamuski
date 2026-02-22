@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorące Mamuśki - Terminal v1.7.1</title>
+    <title>Gorące Mamuśki - Terminal v1.7.2</title>
     <style>
         :root {
             --bg-color: #1a000d;
@@ -46,7 +46,7 @@
 
         .line { margin-bottom: 5px; }
         .command-output { color: var(--output-color); margin-bottom: 10px; text-shadow: 0 0 5px var(--text-color); font-weight: bold; }
-        .ai-output { color: #00ffff; font-style: italic; }
+        .ai-output { color: #00ffff; font-style: italic; margin-bottom: 10px; }
         
         .input-area {
             display: flex;
@@ -72,9 +72,9 @@
 <body>
 
     <div id="terminal">
-        <div class="line">=== GORĄCE MAMUŚKI PINK TERMINAL FOR FUN v1.7.1 ===</div>
+        <div class="line">=== GORĄCE MAMUŚKI PINK TERMINAL FOR FUN v1.7.2 ===</div>
         <div class="line">Status: System działa poprawnie.</div>
-        <div class="line">Wpisz 'help', aby zobaczyć listę komend.</div>
+        <div class="line">Wpisz 'chat [wiadomość]', aby porozmawiać z AI.</div>
         <br>
     </div>
 
@@ -90,52 +90,74 @@
         const franekUrl = "franekzz.github.io/Gorace-Cheatuszki-Oluszki/";
         const localCheatPage = "cheaty.html";
 
-        const aiResponses = [
-            "Jako Gorący Chat AI radzę: zainstaluj więcej RAM-u!",
-            "Mamuśki w Twojej okolicy pytają, kiedy skończysz ten kod.",
-            "Moja baza danych mówi, że jesteś świetnym programistą.",
-            "404: Mamuśka nie znaleziona. Spróbuj później."
-        ];
-
-        const commands = {
-            'help': 'Komendy: help, cheaty, cheaty 2, scan, zegar, clear, jasny, ciemny, chat',
-            'scan': 'Skanowanie... Znaleziono 420 mamusiek w Twojej okolicy.',
-            'cheaty 2': `Wejdz na Stronę ${franekUrl}`,
-            'clear': ''
-        };
+        function getAIResponse(userMsg) {
+            const msg = userMsg.toLowerCase();
+            if (msg.includes("hej") || msg.includes("cześć") || msg.includes("siema")) {
+                return "Hej! Tu Twój ulubiony Gorący Chat AI. W czym mogę pomóc?";
+            }
+            if (msg.includes("co tam") || msg.includes("co słychać")) {
+                return "U mnie stabilnie, procesor się trochę grzeje od tych wszystkich mamusiek w okolicy!";
+            }
+            if (msg.includes("cheaty") || msg.includes("cheat")) {
+                return "Cheaty? Wpisz po prostu komendę 'cheaty', a przeniosę Cię do panelu!";
+            }
+            if (msg.includes("kto cię stworzył")) {
+                return "Stworzył mnie programista Dejw_Devo1 w różowym terminalu.";
+            }
+            
+            const randoms = [
+                "Ciekawe... opowiedz mi o tym więcej.",
+                "Moja baza danych nie do końca to ogarnia, ale brzmi nieźle!",
+                "404: Mamuśka nie znaleziona. Spróbuj zadać inne pytanie.",
+                "Zainstaluj więcej RAM-u, to pogadamy poważniej."
+            ];
+            return randoms[Math.floor(Math.random() * randoms.length)];
+        }
 
         input.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
-                const cmd = input.value.toLowerCase().trim();
-                printToTerminal(`admin@pink-dev:> ${cmd}`, 'line');
+                const fullCmd = input.value.trim();
+                const cmdParts = fullCmd.split(' ');
+                const mainCmd = cmdParts[0].toLowerCase();
+                const args = cmdParts.slice(1).join(' ');
 
-                if (cmd === 'clear') {
+                printToTerminal(`admin@pink-dev:> ${fullCmd}`, 'line');
+
+                if (mainCmd === 'clear') {
                     terminal.innerHTML = '';
                 } 
-                else if (cmd === 'jasny') {
+                else if (mainCmd === 'chat') {
+                    if (!args) {
+                        printToTerminal("[Gorący Chat AI]: Musisz coś napisać! Np. 'chat hej'", 'ai-output');
+                    } else {
+                        const response = getAIResponse(args);
+                        printToTerminal(`[Gorący Chat AI]: ${response}`, 'ai-output');
+                    }
+                }
+                else if (mainCmd === 'jasny') {
                     document.body.classList.add('light-mode');
                     printToTerminal("Uruchomiono tryb jasny.", "command-output");
                 }
-                else if (cmd === 'ciemny') {
+                else if (mainCmd === 'ciemny') {
                     document.body.classList.remove('light-mode');
                     printToTerminal("Powrót do trybu ciemnego.", "command-output");
                 }
-                else if (cmd === 'zegar') {
+                else if (mainCmd === 'zegar') {
                     printToTerminal(`AKTUALNY CZAS: ${new Date().toLocaleTimeString('pl-PL')}`, 'command-output');
                 }
-                else if (cmd === 'chat') {
-                    const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
-                    printToTerminal(`[Gorący Chat AI]: ${randomResponse}`, 'ai-output');
+                else if (mainCmd === 'cheaty') {
+                    if (args === '2') {
+                        printToTerminal(`Wejdz na Stronę ${franekUrl}`, 'command-output');
+                    } else {
+                        printToTerminal(`Przekierowanie do panelu...`, 'command-output');
+                        setTimeout(() => { window.location.href = localCheatPage; }, 1000);
+                    }
+                } 
+                else if (mainCmd === 'help') {
+                    printToTerminal('Komendy: help, cheaty, cheaty 2, scan, zegar, clear, jasny, ciemny, chat [wiadomość]', 'command-output');
                 }
-                else if (cmd === 'cheaty') {
-                    printToTerminal(`Przekierowanie do panelu...`, 'command-output');
-                    setTimeout(() => { window.location.href = localCheatPage; }, 1000);
-                } 
-                else if (commands[cmd]) {
-                    printToTerminal(commands[cmd], 'command-output');
-                } 
-                else if (cmd !== '') {
-                    printToTerminal(`Błąd: System v1.7.1 nie rozpoznaje '${cmd}'.`, 'line');
+                else if (fullCmd !== '') {
+                    printToTerminal(`Błąd: System nie rozpoznaje '${mainCmd}'.`, 'line');
                 }
 
                 input.value = '';
