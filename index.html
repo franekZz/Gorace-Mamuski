@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gorące Mamuśki - Cheat Console</title>
     <style>
-        /* Stylistyka Pink Terminal */
         body {
             background-color: #1a000d; 
             color: #ff66cc; 
@@ -59,9 +58,9 @@
 <body>
 
     <div id="terminal">
-        <div class="line">=== GORĄCE MAMUŚKI OS v1.3 ===</div>
-        <div class="line">Witaj Dejw_Devo1. System załadowany pomyślnie.</div>
-        <div class="line">Wpisz 'help', aby zobaczyć listę komend.</div>
+        <div class="line">=== GORĄCE MAMUŚKI OS v1.4 ===</div>
+        <div class="line">Witaj Dejw_Devo1. System gotowy.</div>
+        <div class="line">Wpisz 'help', aby zobaczyć listę funkcji.</div>
         <br>
     </div>
 
@@ -74,13 +73,12 @@
         const input = document.getElementById('commandInput');
         const terminal = document.getElementById('terminal');
 
-        // Adres docelowy
         const cheatUrl = "https://franekzz.github.io/Gorace-Cheatuszki-Oluszki/";
 
-        // Lista komend
         const commands = {
-            'help': 'Dostępne komendy: help, cheaty, cheaty 2, scan, clear',
+            'help': 'Dostępne komendy: help, cheaty (przekierowanie), cheaty 2 (pokazuje adres), scan, clear',
             'scan': 'Skanowanie bazy danych... Znaleziono 420 mamusiek w Twojej okolicy.',
+            'cheaty 2': `Wejdź na stronę: ${cheatUrl}`,
             'clear': ''
         };
 
@@ -92,19 +90,18 @@
 
                 if (cmd === 'clear') {
                     terminal.innerHTML = '';
-                } else if (cmd === 'cheaty' || cmd === 'cheaty 2') {
-                    printToTerminal(`Inicjowanie połączenia z bazą cheatów...`, 'command-output');
-                    printToTerminal(`Przekierowywanie na stronę za 1 sekundę...`, 'line');
-                    
-                    // Przekierowanie po 1 sekundzie
+                } 
+                else if (cmd === 'cheaty') {
+                    printToTerminal(`Inicjowanie natychmiastowego przekierowania...`, 'command-output');
                     setTimeout(() => {
                         window.location.href = cheatUrl;
-                    }, 1000);
-
-                } else if (commands[cmd]) {
+                    }, 800);
+                } 
+                else if (commands[cmd]) {
                     printToTerminal(commands[cmd], 'command-output');
-                } else if (cmd !== '') {
-                    printToTerminal(`Błąd: System nie rozpoznaje komendy '${cmd}'.`, 'line');
+                } 
+                else if (cmd !== '') {
+                    printToTerminal(`Błąd: Nieznana komenda '${cmd}'.`, 'line');
                 }
 
                 input.value = '';
