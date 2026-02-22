@@ -59,9 +59,9 @@
 <body>
 
     <div id="terminal">
-        <div class="line">=== GORĄCE MAMUŚKI OS v1.5 ===</div>
-        <div class="line">Użytkownik: Dejw_Devo1 | Karta: RTX 3060</div>
-        <div class="line">Status: Połączono z serwerem.</div>
+        <div class="line">=== GORĄCE MAMUŚKI PINK TERMINAL FOR FUN v1.6 ===</div>
+        <div class="line">Witaj Dejw_Devo1. Twoja karta RTX 3060 jest gotowa do akcji.</div>
+        <div class="line">Status: System działa poprawnie.</div>
         <div class="line">Wpisz 'help', aby zobaczyć listę komend.</div>
         <br>
     </div>
@@ -82,7 +82,7 @@
         // Lista komend
         const commands = {
             'help': 'Dostępne komendy: help, cheaty, cheaty 2, scan, clear',
-            'scan': 'Skanowanie... Znaleziono 420 mamusiek gotowych do gry w Twojej okolicy.',
+            'scan': 'Skanowanie... Znaleziono 420 mamusiek w Twojej okolicy. Wszystkie są ONLINE.',
             'cheaty 2': `Wejdz na Stronę ${franekUrl}`,
             'clear': ''
         };
@@ -91,14 +91,13 @@
             if (e.key === 'Enter') {
                 const cmd = input.value.toLowerCase().trim();
                 
-                // Pokazujemy co wpisaliśmy
                 printToTerminal(`admin@pink-dev:> ${cmd}`, 'line');
 
                 if (cmd === 'clear') {
                     terminal.innerHTML = '';
                 } 
                 else if (cmd === 'cheaty') {
-                    printToTerminal(`Ładowanie modułu cheaty.html...`, 'command-output');
+                    printToTerminal(`Inicjowanie modułu cheaty.html...`, 'command-output');
                     printToTerminal(`Przekierowanie za 1 sekundę...`, 'line');
                     setTimeout(() => {
                         window.location.href = localCheatPage;
@@ -108,7 +107,7 @@
                     printToTerminal(commands[cmd], 'command-output');
                 } 
                 else if (cmd !== '') {
-                    printToTerminal(`Błąd: Komenda '${cmd}' nie istnieje w bazie danych.`, 'line');
+                    printToTerminal(`Błąd: Komenda '${cmd}' nie została odnaleziona w systemie FUN v1.6.`, 'line');
                 }
 
                 input.value = '';
