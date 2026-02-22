@@ -7,8 +7,8 @@
     <style>
         /* Stylistyka Pink Terminal */
         body {
-            background-color: #1a000d; /* Bardzo ciemny róż/fiolet */
-            color: #ff66cc; /* Neonowy róż */
+            background-color: #1a000d; 
+            color: #ff66cc; 
             font-family: 'Courier New', Courier, monospace;
             display: flex;
             flex-direction: column;
@@ -30,7 +30,7 @@
         }
 
         .line { margin-bottom: 5px; }
-        .command-output { color: #ffffff; margin-bottom: 10px; text-shadow: 0 0 5px #ff66cc; }
+        .command-output { color: #ffffff; margin-bottom: 10px; text-shadow: 0 0 5px #ff66cc; font-weight: bold; }
         
         .input-area {
             display: flex;
@@ -52,7 +52,6 @@
             flex-grow: 1;
         }
 
-        /* Efekt migającego kursora */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: #ff3399; }
     </style>
@@ -60,9 +59,9 @@
 <body>
 
     <div id="terminal">
-        <div class="line">=== GORĄCE MAMUŚKI OS v1.0 ===</div>
+        <div class="line">=== GORĄCE MAMUŚKI OS v1.3 ===</div>
         <div class="line">Witaj Dejw_Devo1. System załadowany pomyślnie.</div>
-        <div class="line">Wpisz 'help', aby zobaczyć listę dostępnych cheatów.</div>
+        <div class="line">Wpisz 'help', aby zobaczyć listę komend.</div>
         <br>
     </div>
 
@@ -75,11 +74,13 @@
         const input = document.getElementById('commandInput');
         const terminal = document.getElementById('terminal');
 
-        const cheats = {
-            'help': 'Dostępne komendy: help, scan, unlock-all, matrix, clear',
-            'scan': 'Skanowanie mamusiek w Twojej okolicy... Znaleziono: 69.',
-            'unlock-all': 'Odblokowywanie wszystkich cheatów... PROSZĘ CZEKAĆ... [SUCCESS]',
-            'matrix': 'Inicjowanie różowego deszczu danych... (wkrótce)',
+        // Adres docelowy
+        const cheatUrl = "https://franekzz.github.io/Gorace-Cheatuszki-Oluszki/";
+
+        // Lista komend
+        const commands = {
+            'help': 'Dostępne komendy: help, cheaty, cheaty 2, scan, clear',
+            'scan': 'Skanowanie bazy danych... Znaleziono 420 mamusiek w Twojej okolicy.',
             'clear': ''
         };
 
@@ -87,15 +88,23 @@
             if (e.key === 'Enter') {
                 const cmd = input.value.toLowerCase().trim();
                 
-                // Dodaj wpisaną komendę do terminala
                 printToTerminal(`admin@pink-dev:> ${cmd}`, 'line');
 
                 if (cmd === 'clear') {
                     terminal.innerHTML = '';
-                } else if (cheats[cmd]) {
-                    printToTerminal(cheats[cmd], 'command-output');
+                } else if (cmd === 'cheaty' || cmd === 'cheaty 2') {
+                    printToTerminal(`Inicjowanie połączenia z bazą cheatów...`, 'command-output');
+                    printToTerminal(`Przekierowywanie na stronę za 1 sekundę...`, 'line');
+                    
+                    // Przekierowanie po 1 sekundzie
+                    setTimeout(() => {
+                        window.location.href = cheatUrl;
+                    }, 1000);
+
+                } else if (commands[cmd]) {
+                    printToTerminal(commands[cmd], 'command-output');
                 } else if (cmd !== '') {
-                    printToTerminal(`Błąd: Komenda '${cmd}' nie istnieje.`, 'line');
+                    printToTerminal(`Błąd: System nie rozpoznaje komendy '${cmd}'.`, 'line');
                 }
 
                 input.value = '';
