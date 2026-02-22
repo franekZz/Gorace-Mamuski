@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorące Mamuśki - Terminal v1.7</title>
+    <title>Gorące Mamuśki - Terminal v1.7.1</title>
     <style>
         :root {
             --bg-color: #1a000d;
@@ -13,7 +13,6 @@
             --output-color: #ffffff;
         }
 
-        /* Tryb Jasny */
         .light-mode {
             --bg-color: #fff0f5;
             --text-color: #d10069;
@@ -47,7 +46,7 @@
 
         .line { margin-bottom: 5px; }
         .command-output { color: var(--output-color); margin-bottom: 10px; text-shadow: 0 0 5px var(--text-color); font-weight: bold; }
-        .ai-output { color: #00ffff; font-style: italic; } /* Kolor AI */
+        .ai-output { color: #00ffff; font-style: italic; }
         
         .input-area {
             display: flex;
@@ -73,9 +72,9 @@
 <body>
 
     <div id="terminal">
-        <div class="line">=== GORĄCE MAMUŚKI PINK TERMINAL FOR FUN v1.7.0 ===</div>
-        <div class="line">Witaj Dejw_Devo1. Tryb: DARK (default).</div>
-        <div class="line">Wpisz 'help', aby zobaczyć nowe opcje.</div>
+        <div class="line">=== GORĄCE MAMUŚKI PINK TERMINAL FOR FUN v1.7.1 ===</div>
+        <div class="line">Status: System działa poprawnie.</div>
+        <div class="line">Wpisz 'help', aby zobaczyć listę komend.</div>
         <br>
     </div>
 
@@ -94,7 +93,6 @@
         const aiResponses = [
             "Jako Gorący Chat AI radzę: zainstaluj więcej RAM-u!",
             "Mamuśki w Twojej okolicy pytają, kiedy skończysz ten kod.",
-            "Dejw_Devo1, Twój RTX 3060 jest tak gorący jak ten chat.",
             "Moja baza danych mówi, że jesteś świetnym programistą.",
             "404: Mamuśka nie znaleziona. Spróbuj później."
         ];
@@ -116,7 +114,7 @@
                 } 
                 else if (cmd === 'jasny') {
                     document.body.classList.add('light-mode');
-                    printToTerminal("Uruchomiono tryb jasny (Flashbang!).", "command-output");
+                    printToTerminal("Uruchomiono tryb jasny.", "command-output");
                 }
                 else if (cmd === 'ciemny') {
                     document.body.classList.remove('light-mode');
@@ -137,7 +135,7 @@
                     printToTerminal(commands[cmd], 'command-output');
                 } 
                 else if (cmd !== '') {
-                    printToTerminal(`Błąd: System v1.7.0 nie rozpoznaje '${cmd}'.`, 'line');
+                    printToTerminal(`Błąd: System v1.7.1 nie rozpoznaje '${cmd}'.`, 'line');
                 }
 
                 input.value = '';
