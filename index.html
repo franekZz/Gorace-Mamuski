@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gorące Mamuśki - Cheat Console</title>
+    <style>
+        /* Stylistyka Pink Terminal */
+        body {
+            background-color: #1a000d; /* Bardzo ciemny róż/fiolet */
+            color: #ff66cc; /* Neonowy róż */
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        #terminal {
+            border: 2px solid #ff3399;
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: inset 0 0 20px #ff3399, 0 0 10px #ff3399;
+            margin-bottom: 10px;
+        }
+
+        .line { margin-bottom: 5px; }
+        .command-output { color: #ffffff; margin-bottom: 10px; text-shadow: 0 0 5px #ff66cc; }
+        
+        .input-area {
+            display: flex;
+            align-items: center;
+            background: #2b0016;
+            padding: 10px;
+            border: 1px solid #ff3399;
+        }
+
+        .prefix { margin-right: 10px; font-weight: bold; }
+
+        input {
+            background: transparent;
+            border: none;
+            color: #ffccff;
+            font-family: inherit;
+            font-size: 16px;
+            outline: none;
+            flex-grow: 1;
+        }
+
+        /* Efekt migającego kursora */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #ff3399; }
+    </style>
+</head>
+<body>
+
+    <div id="terminal">
+        <div class="line">=== GORĄCE MAMUŚKI OS v1.0 ===</div>
+        <div class="line">Witaj Dejw_Devo1. System załadowany pomyślnie.</div>
+        <div class="line">Wpisz 'help', aby zobaczyć listę dostępnych cheatów.</div>
+        <br>
+    </div>
+
+    <div class="input-area">
+        <span class="prefix">admin@pink-dev:></span>
+        <input type="text" id="commandInput" autofocus autocomplete="off">
+    </div>
+
+    <script>
+        const input = document.getElementById('commandInput');
+        const terminal = document.getElementById('terminal');
+
+        const cheats = {
+            'help': 'Dostępne komendy: help, scan, unlock-all, matrix, clear',
+            'scan': 'Skanowanie mamusiek w Twojej okolicy... Znaleziono: 69.',
+            'unlock-all': 'Odblokowywanie wszystkich cheatów... PROSZĘ CZEKAĆ... [SUCCESS]',
+            'matrix': 'Inicjowanie różowego deszczu danych... (wkrótce)',
+            'clear': ''
+        };
+
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const cmd = input.value.toLowerCase().trim();
+                
+                // Dodaj wpisaną komendę do terminala
+                printToTerminal(`admin@pink-dev:> ${cmd}`, 'line');
+
+                if (cmd === 'clear') {
+                    terminal.innerHTML = '';
+                } else if (cheats[cmd]) {
+                    printToTerminal(cheats[cmd], 'command-output');
+                } else if (cmd !== '') {
+                    printToTerminal(`Błąd: Komenda '${cmd}' nie istnieje.`, 'line');
+                }
+
+                input.value = '';
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+        });
+
+        function printToTerminal(text, className) {
+            const div = document.createElement('div');
+            div.className = className;
+            div.innerText = text;
+            terminal.appendChild(div);
+        }
+    </script>
+</body>
+</html>
