@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorące Mamuśki - Cheat Console</title>
+    <title>Gorące Mamuśki - Terminal</title>
     <style>
+        /* Stylizacja Pink Terminal */
         body {
             background-color: #1a000d; 
             color: #ff66cc; 
@@ -58,9 +59,10 @@
 <body>
 
     <div id="terminal">
-        <div class="line">=== GORĄCE MAMUŚKI OS v1.4 ===</div>
-        <div class="line">Witaj Dejw_Devo1. System gotowy.</div>
-        <div class="line">Wpisz 'help', aby zobaczyć listę funkcji.</div>
+        <div class="line">=== GORĄCE MAMUŚKI OS v1.5 ===</div>
+        <div class="line">Użytkownik: Dejw_Devo1 | Karta: RTX 3060</div>
+        <div class="line">Status: Połączono z serwerem.</div>
+        <div class="line">Wpisz 'help', aby zobaczyć listę komend.</div>
         <br>
     </div>
 
@@ -73,12 +75,15 @@
         const input = document.getElementById('commandInput');
         const terminal = document.getElementById('terminal');
 
-        const cheatUrl = "https://franekzz.github.io/Gorace-Cheatuszki-Oluszki/";
+        // Adresy
+        const franekUrl = "franekzz.github.io/Gorace-Cheatuszki-Oluszki/";
+        const localCheatPage = "cheaty.html";
 
+        // Lista komend
         const commands = {
-            'help': 'Dostępne komendy: help, cheaty (przekierowanie), cheaty 2 (pokazuje adres), scan, clear',
-            'scan': 'Skanowanie bazy danych... Znaleziono 420 mamusiek w Twojej okolicy.',
-            'cheaty 2': `Wejdź na stronę: ${cheatUrl}`,
+            'help': 'Dostępne komendy: help, cheaty, cheaty 2, scan, clear',
+            'scan': 'Skanowanie... Znaleziono 420 mamusiek gotowych do gry w Twojej okolicy.',
+            'cheaty 2': `Wejdz na Stronę ${franekUrl}`,
             'clear': ''
         };
 
@@ -86,22 +91,24 @@
             if (e.key === 'Enter') {
                 const cmd = input.value.toLowerCase().trim();
                 
+                // Pokazujemy co wpisaliśmy
                 printToTerminal(`admin@pink-dev:> ${cmd}`, 'line');
 
                 if (cmd === 'clear') {
                     terminal.innerHTML = '';
                 } 
                 else if (cmd === 'cheaty') {
-                    printToTerminal(`Inicjowanie natychmiastowego przekierowania...`, 'command-output');
+                    printToTerminal(`Ładowanie modułu cheaty.html...`, 'command-output');
+                    printToTerminal(`Przekierowanie za 1 sekundę...`, 'line');
                     setTimeout(() => {
-                        window.location.href = cheatUrl;
-                    }, 800);
+                        window.location.href = localCheatPage;
+                    }, 1000);
                 } 
                 else if (commands[cmd]) {
                     printToTerminal(commands[cmd], 'command-output');
                 } 
                 else if (cmd !== '') {
-                    printToTerminal(`Błąd: Nieznana komenda '${cmd}'.`, 'line');
+                    printToTerminal(`Błąd: Komenda '${cmd}' nie istnieje w bazie danych.`, 'line');
                 }
 
                 input.value = '';
