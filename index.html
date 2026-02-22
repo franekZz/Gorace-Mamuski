@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorące Mamuśki - Terminal</title>
+    <title>Gorące Mamuśki - Terminal v1.7</title>
     <style>
-        /* Stylizacja Pink Terminal */
+        :root {
+            --bg-color: #1a000d;
+            --text-color: #ff66cc;
+            --input-bg: #2b0016;
+            --border-color: #ff3399;
+            --output-color: #ffffff;
+        }
+
+        /* Tryb Jasny */
+        .light-mode {
+            --bg-color: #fff0f5;
+            --text-color: #d10069;
+            --input-bg: #ffe6f0;
+            --border-color: #ff66b2;
+            --output-color: #4b0026;
+        }
+
         body {
-            background-color: #1a000d; 
-            color: #ff66cc; 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
             font-family: 'Courier New', Courier, monospace;
             display: flex;
             flex-direction: column;
@@ -16,28 +32,29 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
-            overflow: hidden;
+            transition: background 0.5s, color 0.5s;
         }
 
         #terminal {
-            border: 2px solid #ff3399;
+            border: 2px solid var(--border-color);
             flex-grow: 1;
             padding: 15px;
             overflow-y: auto;
-            background: rgba(0, 0, 0, 0.4);
-            box-shadow: inset 0 0 20px #ff3399, 0 0 10px #ff3399;
+            background: rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 0 20px var(--border-color);
             margin-bottom: 10px;
         }
 
         .line { margin-bottom: 5px; }
-        .command-output { color: #ffffff; margin-bottom: 10px; text-shadow: 0 0 5px #ff66cc; font-weight: bold; }
+        .command-output { color: var(--output-color); margin-bottom: 10px; text-shadow: 0 0 5px var(--text-color); font-weight: bold; }
+        .ai-output { color: #00ffff; font-style: italic; } /* Kolor AI */
         
         .input-area {
             display: flex;
             align-items: center;
-            background: #2b0016;
+            background: var(--input-bg);
             padding: 10px;
-            border: 1px solid #ff3399;
+            border: 1px solid var(--border-color);
         }
 
         .prefix { margin-right: 10px; font-weight: bold; }
@@ -45,24 +62,20 @@
         input {
             background: transparent;
             border: none;
-            color: #ffccff;
+            color: var(--text-color);
             font-family: inherit;
             font-size: 16px;
             outline: none;
             flex-grow: 1;
         }
-
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #ff3399; }
     </style>
 </head>
 <body>
 
     <div id="terminal">
-        <div class="line">=== GORĄCE MAMUŚKI PINK TERMINAL FOR FUN v1.6 ===</div>
-        <div class="line">Witaj Dejw_Devo1. Twoja karta RTX 3060 jest gotowa do akcji.</div>
-        <div class="line">Status: System działa poprawnie.</div>
-        <div class="line">Wpisz 'help', aby zobaczyć listę komend.</div>
+        <div class="line">=== GORĄCE MAMUŚKI PINK TERMINAL FOR FUN v1.7.0 ===</div>
+        <div class="line">Witaj Dejw_Devo1. Tryb: DARK (default).</div>
+        <div class="line">Wpisz 'help', aby zobaczyć nowe opcje.</div>
         <br>
     </div>
 
@@ -75,14 +88,20 @@
         const input = document.getElementById('commandInput');
         const terminal = document.getElementById('terminal');
 
-        // Adresy
         const franekUrl = "franekzz.github.io/Gorace-Cheatuszki-Oluszki/";
         const localCheatPage = "cheaty.html";
 
-        // Lista komend
+        const aiResponses = [
+            "Jako Gorący Chat AI radzę: zainstaluj więcej RAM-u!",
+            "Mamuśki w Twojej okolicy pytają, kiedy skończysz ten kod.",
+            "Dejw_Devo1, Twój RTX 3060 jest tak gorący jak ten chat.",
+            "Moja baza danych mówi, że jesteś świetnym programistą.",
+            "404: Mamuśka nie znaleziona. Spróbuj później."
+        ];
+
         const commands = {
-            'help': 'Dostępne komendy: help, cheaty, cheaty 2, scan, clear',
-            'scan': 'Skanowanie... Znaleziono 420 mamusiek w Twojej okolicy. Wszystkie są ONLINE.',
+            'help': 'Komendy: help, cheaty, cheaty 2, scan, zegar, clear, jasny, ciemny, chat',
+            'scan': 'Skanowanie... Znaleziono 420 mamusiek w Twojej okolicy.',
             'cheaty 2': `Wejdz na Stronę ${franekUrl}`,
             'clear': ''
         };
@@ -90,24 +109,35 @@
         input.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 const cmd = input.value.toLowerCase().trim();
-                
                 printToTerminal(`admin@pink-dev:> ${cmd}`, 'line');
 
                 if (cmd === 'clear') {
                     terminal.innerHTML = '';
                 } 
+                else if (cmd === 'jasny') {
+                    document.body.classList.add('light-mode');
+                    printToTerminal("Uruchomiono tryb jasny (Flashbang!).", "command-output");
+                }
+                else if (cmd === 'ciemny') {
+                    document.body.classList.remove('light-mode');
+                    printToTerminal("Powrót do trybu ciemnego.", "command-output");
+                }
+                else if (cmd === 'zegar') {
+                    printToTerminal(`AKTUALNY CZAS: ${new Date().toLocaleTimeString('pl-PL')}`, 'command-output');
+                }
+                else if (cmd === 'chat') {
+                    const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+                    printToTerminal(`[Gorący Chat AI]: ${randomResponse}`, 'ai-output');
+                }
                 else if (cmd === 'cheaty') {
-                    printToTerminal(`Inicjowanie modułu cheaty.html...`, 'command-output');
-                    printToTerminal(`Przekierowanie za 1 sekundę...`, 'line');
-                    setTimeout(() => {
-                        window.location.href = localCheatPage;
-                    }, 1000);
+                    printToTerminal(`Przekierowanie do panelu...`, 'command-output');
+                    setTimeout(() => { window.location.href = localCheatPage; }, 1000);
                 } 
                 else if (commands[cmd]) {
                     printToTerminal(commands[cmd], 'command-output');
                 } 
                 else if (cmd !== '') {
-                    printToTerminal(`Błąd: Komenda '${cmd}' nie została odnaleziona w systemie FUN v1.6.`, 'line');
+                    printToTerminal(`Błąd: System v1.7.0 nie rozpoznaje '${cmd}'.`, 'line');
                 }
 
                 input.value = '';
