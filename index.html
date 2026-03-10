@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorące Mamuśki - Terminal v1.8.0</title>
+    <title>Gorące Mamuśki - Home</title>
     <style>
         :root {
             --bg-color: #1a000d;
@@ -21,17 +21,62 @@
             --output-color: #4b0026;
         }
 
-        body {
-            background-color: var(--bg-color); 
-            color: var(--text-color); 
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
             font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+            transition: background 0.5s;
+        }
+
+        /* --- STRONA GŁÓWNA --- */
+        #home-page {
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            margin: 0;
+            text-align: center;
+            background: radial-gradient(circle, #2b0016 0%, #1a000d 100%);
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 20px var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .start-btn {
+            background: transparent;
+            border: 3px solid var(--border-color);
+            color: var(--text-color);
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--border-color);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .start-btn:hover {
+            background: var(--border-color);
+            color: #ffffff;
+            box-shadow: 0 0 30px var(--border-color);
+            transform: scale(1.1);
+        }
+
+        /* --- TERMINAL (UKRYTY NA START) --- */
+        #terminal-container {
+            display: none; /* Ukryty na początku */
+            flex-direction: column;
+            height: 100vh;
             padding: 20px;
             box-sizing: border-box;
-            transition: background 0.5s, color 0.5s;
         }
 
         #terminal {
@@ -39,7 +84,7 @@
             flex-grow: 1;
             padding: 15px;
             overflow-y: auto;
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.3);
             box-shadow: inset 0 0 20px var(--border-color);
             margin-bottom: 10px;
         }
@@ -71,35 +116,52 @@
         }
 
         ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #ff3399; }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); }
     </style>
 </head>
 <body>
 
-    <div id="terminal">
-        <div class="line">=== GORĄCE MAMUŚKI PINK TERMINAL FOR FUN v1.8.0 ===</div>
-        <div class="line">Status: System zabezpieczony przez Gorący Antivirus.</div>
-        <div class="line">Wpisz 'help', aby zobaczyć listę funkcji.</div>
-        <br>
+    <div id="home-page">
+        <h1>GORĄCE MAMUŚKI</h1>
+        <p>Witaj w systemie PINK TERMINAL FOR FUN v1.9.0</p>
+        <button class="start-btn" onclick="openTerminal()">Otwórz terminal</button>
     </div>
 
-    <div class="input-area">
-        <span class="prefix">admin@pink-dev:></span>
-        <input type="text" id="commandInput" autofocus autocomplete="off">
+    <div id="terminal-container">
+        <div id="terminal">
+            <div class="line">=== GORĄCE MAMUŚKI PINK TERMINAL FOR FUN v1.9.0 ===</div>
+            <div class="line">Status: System zabezpieczony przez Gorący Antivirus.</div>
+            <div class="line">Wpisz 'help', aby zobaczyć listę funkcji.</div>
+            <br>
+        </div>
+
+        <div class="input-area">
+            <span class="prefix">admin@pink-dev:></span>
+            <input type="text" id="commandInput" autocomplete="off">
+        </div>
     </div>
 
     <script>
         const input = document.getElementById('commandInput');
         const terminal = document.getElementById('terminal');
+        const homePage = document.getElementById('home-page');
+        const terminalContainer = document.getElementById('terminal-container');
+
+        // Funkcja otwierająca terminal
+        function openTerminal() {
+            homePage.style.display = 'none';
+            terminalContainer.style.display = 'flex';
+            input.focus(); // Od razu ustawia kursor w polu tekstowym
+        }
 
         const franekUrl = "franekzz.github.io/Gorace-Cheatuszki-Oluszki/";
         const localCheatPage = "cheaty.html";
 
         function getAIResponse(userMsg) {
             const msg = userMsg.toLowerCase();
-            if (msg.includes("hej") || msg.includes("cześć") || msg.includes("siema")) return "Hej! Tu Gorący Chat AI. Co tam u Ciebie?";
-            if (msg.includes("co tam")) return "Wszystko gra, skanuję internet w poszukiwaniu nowych cheatów!";
-            return "Interesujące... Powiedz coś więcej o tych mamuśkach.";
+            if (msg.includes("hej") || msg.includes("cześć")) return "Hej! Tu Twój różowy asystent AI.";
+            if (msg.includes("co tam")) return "Skanuję sieć w poszukiwaniu przygód!";
+            return "Interesujące... Powiedz mi o tym więcej.";
         }
 
         input.addEventListener('keydown', function(e) {
@@ -109,24 +171,18 @@
 
                 printToTerminal(`admin@pink-dev:> ${fullCmd}`, 'line');
 
-                // Logika Antywirusa
                 if (cmdLower === 'antivirus y') {
                     printToTerminal("[!] Gorący Antivirus (FREE): Wykryto 4 zagrożenia!", "virus-output");
-                    printToTerminal("[!] Twoja darmowa licencja nie pozwala na usuwanie wirusów.", "line");
                     printToTerminal("[>] Kup wersję PRO wpisując: Antivirus pro y", "command-output");
                 }
                 else if (cmdLower === 'antivirus pro y') {
-                    printToTerminal("[+] Gorący Antivirus PRO: Rozpoczynam głębokie skanowanie...", "success-output");
+                    printToTerminal("[+] Gorący Antivirus PRO: Rozpoczynam skanowanie...", "success-output");
                     setTimeout(() => {
-                        printToTerminal("... Skanowanie RTX 3060 ...", "line");
-                        printToTerminal("... Usuwanie Trojan.Mamuska.A ... [DONE]", "line");
-                        printToTerminal("... Usuwanie Worm.Pinky ... [DONE]", "line");
-                        printToTerminal("... Usuwanie Malware.Franek ... [DONE]", "line");
-                        printToTerminal("... Usuwanie Adware.Hot ... [DONE]", "line");
-                        printToTerminal("[OK] Wszystkie 4 wirusy zostały usunięte! System jest bezpieczny.", "success-output");
+                        printToTerminal("... Skanowanie ...", "line");
+                        printToTerminal("... Usuwanie wirusów ... [DONE]", "line");
+                        printToTerminal("[OK] System bezpieczny!", "success-output");
                     }, 1500);
                 }
-                // Reszta komend
                 else if (cmdLower === 'clear') {
                     terminal.innerHTML = '';
                 } 
@@ -149,14 +205,11 @@
                     printToTerminal(`Przekierowanie...`, 'command-output');
                     setTimeout(() => { window.location.href = localCheatPage; }, 1000);
                 } 
-                else if (cmdLower === 'cheaty 2') {
-                    printToTerminal(`Strona: ${franekUrl}`, 'command-output');
-                }
                 else if (cmdLower === 'help') {
                     printToTerminal('Komendy: help, cheaty, cheaty 2, scan, zegar, clear, jasny, ciemny, chat [tekst], Antivirus y', 'command-output');
                 }
                 else if (fullCmd !== '') {
-                    printToTerminal(`Błąd: '${fullCmd}' to nie jest poprawna komenda.`, 'line');
+                    printToTerminal(`Błąd: '${fullCmd}' nieznany.`, 'line');
                 }
 
                 input.value = '';
