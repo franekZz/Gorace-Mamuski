@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorące Mamuśki - System v4.2 ORIGINAL</title>
+    <title>Gorące Mamuśki - System v4.4 ORIGINAL</title>
     <style>
         :root {
             --bg-main: #1a000d;
@@ -21,53 +21,39 @@
         }
 
         /* --- NAWIGACJA --- */
-        #nav-bar { display: flex; justify-content: center; padding: 20px 0 10px 0; z-index: 100; flex-wrap: wrap; }
+        #nav-bar { display: flex; justify-content: center; padding: 20px 0 10px 0; z-index: 100; }
         .tab-btn {
             background: transparent; border: none; color: var(--pink-accent);
-            padding: 5px 15px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: 0.3s;
+            padding: 0 15px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: 0.3s;
         }
         .tab-btn:hover { color: white; text-shadow: 0 0 10px var(--border-pink); }
 
-        #info-bar {
-            text-align: center; padding: 5px 0 15px 0; font-size: 0.9rem;
-            color: var(--neon-blue); font-weight: bold; text-shadow: 0 0 8px var(--neon-blue);
-        }
+        #info-bar { text-align: center; padding: 5px 0 15px 0; font-size: 0.9rem; color: var(--neon-blue); font-weight: bold; }
 
         /* --- SEKCJE --- */
         .content-section { display: none; height: 100vh; padding: 20px; box-sizing: border-box; flex-direction: column; overflow-y: auto; }
-        #info-section, #cert-section { background-color: var(--bg-dark); color: #ffffff; }
+        #info-section, #cert-section, #terminal-section { background-color: var(--bg-dark); color: #ffffff; }
 
         #home-page { display: flex; flex-direction: column; justify-content: center; align-items: center; height: calc(100vh - 120px); text-align: center; }
-        .start-btn { background: transparent; border: 2px solid var(--border-pink); color: var(--pink-accent); padding: 12px 35px; font-size: 1.3rem; cursor: pointer; font-weight: bold; margin-top: 20px; box-shadow: 0 0 15px var(--border-pink); }
+        .start-btn { background: transparent; border: 2px solid var(--border-pink); color: var(--pink-accent); padding: 12px 35px; font-size: 1.1rem; cursor: pointer; font-weight: bold; margin-bottom: 10px; box-shadow: 0 0 10px var(--border-pink); }
 
-        /* --- CERTYFIKAT I KONTAKT --- */
-        .cert-card {
-            max-width: 600px; margin: 40px auto; padding: 30px;
-            border: 2px solid var(--neon-blue); background: #080808;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2); text-align: center;
-        }
-        .cert-code {
-            font-family: 'Courier New', monospace; background: #111;
-            padding: 15px; color: var(--neon-blue); border: 1px dashed var(--neon-blue);
-            font-size: 1.2rem; margin: 20px 0; word-break: break-all;
-        }
-        .contact-info { margin-top: 30px; text-align: left; border-top: 1px solid #333; padding-top: 20px; }
-        .contact-item { margin: 10px 0; font-size: 1.1rem; }
+        /* --- TERMINAL --- */
+        #terminal-output { flex-grow: 1; overflow-y: auto; padding: 15px; border: 1px solid var(--border-pink); background: #000; color: var(--pink-accent); font-family: 'Courier New', monospace; margin-bottom: 10px; }
+        .term-input-line { display: flex; background: #000; padding: 10px; border: 1px solid var(--border-pink); }
+        #term-in { background: transparent; border: none; color: white; outline: none; flex-grow: 1; font-family: inherit; }
 
-        /* --- FAQ / ELEKTROINFO --- */
-        .faq-container { max-width: 900px; margin: 20px auto; width: 100%; }
-        .faq-item { background: #111; border: 1px solid #222; border-radius: 6px; margin-bottom: 10px; overflow: hidden; }
-        .faq-question {
-            width: 100%; padding: 20px; background: none; border: none; color: white;
-            font-size: 1.1rem; text-align: left; cursor: pointer; display: flex;
-            justify-content: space-between; align-items: center; font-weight: bold;
-        }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.6s ease-in-out; background: #080808; }
-        .faq-answer-inner { padding: 20px; border-top: 1px solid #222; line-height: 1.7; color: #d0d0d0; }
-        .faq-item.active .faq-answer { max-height: 3000px; }
-        .plus-icon { color: var(--neon-blue); transition: 0.3s; }
-        .faq-item.active .plus-icon { transform: rotate(45deg); }
+        /* --- CERTYFIKAT --- */
+        .cert-card { max-width: 600px; margin: 40px auto; padding: 30px; border: 2px solid var(--neon-blue); background: #080808; text-align: center; }
+        .cert-code { font-family: 'Courier New', monospace; background: #111; padding: 15px; color: var(--neon-blue); border: 1px dashed var(--neon-blue); margin: 20px 0; }
         .highlight { color: var(--neon-blue); font-weight: bold; }
+
+        /* --- ELEKTROINFO --- */
+        .faq-container { max-width: 900px; margin: 0 auto; width: 100%; }
+        .faq-item { background: #111; border: 1px solid #222; margin-bottom: 10px; border-radius: 6px; overflow: hidden; }
+        .faq-question { width: 100%; padding: 20px; background: none; border: none; color: white; text-align: left; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; background: #080808; }
+        .faq-item.active .faq-answer { max-height: 2000px; padding: 20px; border-top: 1px solid #222; }
+        .brand-box { border-left: 3px solid var(--neon-blue); padding-left: 15px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -76,30 +62,39 @@
         <button class="tab-btn" onclick="showHome()">Home</button>
         <button class="tab-btn" onclick="showSection('info-section')">ElektroInfo</button>
         <button class="tab-btn" onclick="showSection('cert-section')">Certyfikat</button>
-        <button class="tab-btn" onclick="showSection('app-section')">ElektroApp</button>
-        <button class="tab-btn" onclick="window.location.href='cheaty.html'">Cheaty</button>
     </div>
 
     <div id="info-bar">ElektroInfo Tak to My ale Zmieniliśmy Adres strony</div>
 
     <div id="home-page">
         <h1 style="font-size: 3rem; text-shadow: 0 0 20px var(--border-pink);">GORĄCE MAMUŚKI</h1>
+        <button class="start-btn" onclick="showSection('terminal-section')">Otwórz terminal</button>
         <button class="start-btn" onclick="showSection('cert-section')">Sprawdź Oryginalność</button>
+    </div>
+
+    <div id="terminal-section" class="content-section">
+        <div id="terminal-output">
+            <div>=== GORĄCE MAMUŚKI PINK TERMINAL v4.4 ===</div>
+            <div>[SYSTEM] Inicjalizacja... OK</div>
+            <div>[USER] Dejw_Devo1 zalogowany.</div>
+            <div>[HARDWARE] RTX 3060 wykryty.</div>
+            <div>Wpisz 'help' by zobaczyć komendy.</div>
+            <br>
+        </div>
+        <div class="term-input-line">
+            <span>admin@pink-dev:> </span>
+            <input type="text" id="term-in" autofocus onkeydown="handleTerminal(event)">
+        </div>
     </div>
 
     <div id="cert-section" class="content-section">
         <div class="cert-card">
-            <h2 style="color: var(--neon-blue); margin-top: 0;">CERTYFIKAT ORYGINALNOŚCI</h2>
-            <p>Ta strona jest oficjalnym projektem <b>Dejw_Devo1</b>. Każda inna wersja bez tego kodu jest podróbką.</p>
-            
-            <div class="cert-code">
-                UIXIAOMI!&ZASZYFROWANE!@#$%^&*()
-            </div>
-
-            <div class="contact-info">
-                <div style="font-weight: bold; color: var(--neon-blue); margin-bottom: 10px;">KONTAKT ADM:</div>
-                <div class="contact-item">📧 Gmail: <span class="highlight">franekzz2293@gmail.com</span></div>
-                <div class="contact-item">📞 Telefon: <span class="highlight">514 600 607</span></div>
+            <h2 style="color: var(--neon-blue);">CERTYFIKAT</h2>
+            <p>Ta strona jest Oficjalna.</p>
+            <div class="cert-code">UIXIAOMI!&ZASZYFROWANE!@#$%^&*()</div>
+            <div style="text-align: left; margin-top: 20px;">
+                <p>📧 Gmail: <span class="highlight">franekzz2293@gmail.com</span></p>
+                <p>📞 Telefon: <span class="highlight">514 600 607</span></p>
             </div>
         </div>
     </div>
@@ -107,34 +102,95 @@
     <div id="info-section" class="content-section">
         <h2 style="text-align: center; color: var(--neon-blue);">Baza Wiedzy ElektroInfo</h2>
         <div class="faq-container">
+            
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">Jak wejść do BIOS/UEFI? (Wszystkie Płyty) <span class="plus-icon">+</span></button>
-                <div class="faq-answer"><div class="faq-answer-inner">Naciśnij <b>Delete</b> lub <b>F2</b>... (Pełna treść Twojej instrukcji)</div></div>
+                <button class="faq-question" onclick="toggleFaq(this)">Jak wejść do BIOS/UEFI? <span>+</span></button>
+                <div class="faq-answer">
+                    Aby wejść do BIOS/UEFI, naciśnij klawisz Delete lub F2 tuż po włączeniu komputera (zanim pojawi się logo Windows). W przypadku laptopów często wymagane jest użycie F10, F1, Esc lub kombinacji z klawiszem Fn. Z poziomu systemu Windows 10/11 użyj: Ustawienia > System > Odzyskiwanie > Uruchamianie zaawansowane.<br><br>
+                    Najpopularniejsze klawisze wg producentów:<br>
+                    ASUS: Del, F2<br>
+                    Dell: F2, F12, Del<br>
+                    HP: Esc, F10<br>
+                    Lenovo: F2, Fn+F2, F1, Enter<br>
+                    MSI/Gigabyte/ASRock: Del, F2<br>
+                    Acer: F2, Del<br><br>
+                    Kluczowe porady:<br>
+                    Szybkość: Klawisz należy wciskać wielokrotnie zaraz po uruchomieniu komputera.<br>
+                    Windows 10/11: Jeśli system uruchamia się zbyt szybko, przytrzymaj Shift podczas klikania "Uruchom ponownie" w menu Start, a następnie wybierz Rozwiązywanie problemów > Opcje zaawansowane > Ustawienia oprogramowania układowego UEFI.<br>
+                    Komunikat: Zwróć uwagę na napis na ekranie startowym, np. "Press [klawisz] to enter setup".
+                </div>
             </div>
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">Triki Markowe (Xiaomi 17, Samsung, Moto) <span class="plus-icon">+</span></button>
-                <div class="faq-answer"><div class="faq-answer-inner">HyperOS 3.0, Gesty Moto, OneUI 7... (Pełna treść)</div></div>
-            </div>
-            </div>
-    </div>
 
-    <div id="app-section" class="content-section">
-        <div style="text-align: center; padding: 50px;">
-            <h2 style="color: var(--neon-blue);">ElektroApp</h2>
-            <p>[ REPOZYTORIUM PUSTE ]</p>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">10 Tricków na iPhone <span>+</span></button>
+                <div class="faq-answer">
+                    1. Stuknięcie w tył: Dostępność > Dotyk > Stuknięcie w tył.<br>
+                    2. Szybki kursor: Przytrzymaj Spację na klawiaturze.<br>
+                    3. Skanowanie dokumentów: W aplikacji Notatki kliknij ikonę aparatu.<br>
+                    4. Poziomica w Aparacie: Ustawienia > Aparat > Poziom.<br>
+                    5. Ukrywanie zdjęć: Wybierz zdjęcie > Udostępnij > Ukryj.<br>
+                    6. Dźwięki tła: Dostępność > Dźwięk/Wizualne > Dźwięki tła.<br>
+                    7. Seryjne zdjęcia: Przesuń przycisk migawki w lewo.<br>
+                    8. Kopiowanie tekstu z wideo: Zatrzymaj film i przytrzymaj tekst.<br>
+                    9. Szybki powrót na górę: Dotknij paska zegara na górze.<br>
+                    10. Personalizacja blokady: Przytrzymaj palec na ekranie blokady.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">20 Tricków na Android 16 <span>+</span></button>
+                <div class="faq-answer">
+                    1. Tryb Desktopowy | 2. Gesty AI | 3. Audio Magic (Auracast) | 4. Przestrzeń Prywatna | 5. Klonowanie Appek | 6. Limit Ładowania 80% | 7. Predictive Back | 8. Skrót Latarki na czytniku | 9. Inteligentne Widgety | 10. Szybkie Tłumaczenie menu | 11. Dynamiczne Kolory | 12. Nagrywanie jednej apki | 13. Cykle Baterii | 14. Tryb Czytania (E-ink) | 15. Szybkie Wi-Fi w powiadomieniach | 16. Repair Mode | 17. Eko-Powiadomienia | 18. Gesty trybu jednoręcznego | 19. Szybki QR na blokadzie | 20. Wideo jako tapeta 4K.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Triki: Samsung, Xiaomi 17, Motorola, Vivo, TCL <span>+</span></button>
+                <div class="faq-answer">
+                    <div class="brand-box"><b>Xiaomi 17:</b> Boost charging speed w baterii, Pływające okna (gest z rogu), Video Toolbox dla muzyki w tle.</div>
+                    <div class="brand-box"><b>Samsung:</b> Modes & Routines (automatyzacja), Edge Panels (linijka, schowek).</div>
+                    <div class="brand-box"><b>Motorola:</b> Gesty potrząśnięcia (latarka) i obrotu (aparat), Ready For (tryb PC).</div>
+                    <div class="brand-box"><b>OnePlus/Vivo:</b> Szybkie uruchamianie z czytnika, Zen Mode.</div>
+                    <div class="brand-box"><b>TCL:</b> NXTVISION (poprawa wideo HDR w locie).</div>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <script>
         function toggleFaq(btn) { btn.parentElement.classList.toggle('active'); }
-        function showSection(sectionId) {
+        function showSection(id) {
             document.getElementById('home-page').style.display = 'none';
             document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
-            document.getElementById(sectionId).style.display = 'flex';
+            document.getElementById(id).style.display = 'flex';
+            if(id === 'terminal-section') document.getElementById('term-in').focus();
         }
         function showHome() {
             document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
             document.getElementById('home-page').style.display = 'flex';
+        }
+
+        function handleTerminal(e) {
+            if (e.key === 'Enter') {
+                const input = e.target.value.toLowerCase();
+                const out = document.getElementById('terminal-output');
+                const line = document.createElement('div');
+                line.innerHTML = `> ${input}`;
+                out.appendChild(line);
+
+                const res = document.createElement('div');
+                if(input === 'help') res.innerHTML = "Komendy: help, hardware, whoami, clear, exit";
+                else if(input === 'hardware') res.innerHTML = "GPU: Nvidia RTX 3060 | MOBO: Gigabyte | BIOS: DEL";
+                else if(input === 'whoami') res.innerHTML = "User: Dejw_Devo1 (Dejw_Devo1)";
+                else if(input === 'clear') { out.innerHTML = ''; e.target.value = ''; return; }
+                else if(input === 'exit') { showHome(); e.target.value = ''; return; }
+                else res.innerHTML = "Błąd: Nieznana komenda.";
+                
+                out.appendChild(res);
+                e.target.value = '';
+                out.scrollTop = out.scrollHeight;
+            }
         }
     </script>
 </body>
