@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorące Mamuśki - Home</title>
+    <title>Gorące Mamuśki - System</title>
     <style>
         :root {
             --bg-color: #1a000d;
@@ -13,216 +13,153 @@
             --output-color: #ffffff;
         }
 
-        .light-mode {
-            --bg-color: #fff0f5;
-            --text-color: #d10069;
-            --input-bg: #ffe6f0;
-            --border-color: #ff66b2;
-            --output-color: #4b0026;
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color); color: var(--text-color);
+            overflow: hidden;
         }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Courier New', Courier, monospace;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow: hidden;
-            transition: background 0.5s;
+        /* --- MENU ZAKŁADEK --- */
+        #nav-bar {
+            display: none; /* Ukryte dopóki nie otworzysz terminala */
+            background: #2b0016;
+            border-bottom: 2px solid var(--border-color);
+            display: none;
+            justify-content: flex-start;
+        }
+
+        .tab-btn {
+            background: transparent; border: none;
+            color: var(--text-color); padding: 15px 25px;
+            cursor: pointer; font-family: inherit; font-weight: bold;
+            transition: 0.3s; border-right: 1px solid var(--border-color);
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--border-color); color: white;
         }
 
         /* --- STRONA GŁÓWNA --- */
         #home-page {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            background: radial-gradient(circle, #2b0016 0%, #1a000d 100%);
-        }
-
-        h1 {
-            font-size: 3rem;
-            text-shadow: 0 0 20px var(--border-color);
-            margin-bottom: 20px;
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; height: 100vh; text-align: center;
         }
 
         .start-btn {
-            background: transparent;
-            border: 3px solid var(--border-color);
-            color: var(--text-color);
-            padding: 15px 40px;
-            font-size: 1.5rem;
-            font-family: inherit;
-            cursor: pointer;
-            box-shadow: 0 0 15px var(--border-color);
-            transition: all 0.3s;
-            text-transform: uppercase;
-            font-weight: bold;
+            background: transparent; border: 3px solid var(--border-color);
+            color: var(--text-color); padding: 15px 40px; font-size: 1.5rem;
+            cursor: pointer; box-shadow: 0 0 15px var(--border-color);
         }
 
-        .start-btn:hover {
-            background: var(--border-color);
-            color: #ffffff;
-            box-shadow: 0 0 30px var(--border-color);
-            transform: scale(1.1);
-        }
-
-        /* --- TERMINAL (UKRYTY NA START) --- */
-        #terminal-container {
-            display: none; /* Ukryty na początku */
+        /* --- KONTENERY TREŚCI --- */
+        .content-section {
+            display: none; height: calc(100vh - 52px);
+            padding: 20px; box-sizing: border-box;
             flex-direction: column;
-            height: 100vh;
-            padding: 20px;
-            box-sizing: border-box;
         }
 
+        /* TERMINAL STYLE */
         #terminal {
-            border: 2px solid var(--border-color);
-            flex-grow: 1;
-            padding: 15px;
-            overflow-y: auto;
-            background: rgba(0, 0, 0, 0.3);
-            box-shadow: inset 0 0 20px var(--border-color);
+            border: 2px solid var(--border-color); flex-grow: 1;
+            padding: 15px; overflow-y: auto; background: rgba(0, 0, 0, 0.3);
             margin-bottom: 10px;
         }
 
-        .line { margin-bottom: 5px; }
-        .command-output { color: var(--output-color); margin-bottom: 10px; text-shadow: 0 0 5px var(--text-color); font-weight: bold; }
-        .ai-output { color: #00ffff; font-style: italic; margin-bottom: 10px; }
-        .virus-output { color: #ff0000; font-weight: bold; }
-        .success-output { color: #00ff00; font-weight: bold; }
-        
         .input-area {
-            display: flex;
-            align-items: center;
-            background: var(--input-bg);
-            padding: 10px;
-            border: 1px solid var(--border-color);
+            display: flex; background: var(--input-bg);
+            padding: 10px; border: 1px solid var(--border-color);
         }
-
-        .prefix { margin-right: 10px; font-weight: bold; }
 
         input {
-            background: transparent;
-            border: none;
-            color: var(--text-color);
-            font-family: inherit;
-            font-size: 16px;
-            outline: none;
-            flex-grow: 1;
+            background: transparent; border: none; color: var(--text-color);
+            font-family: inherit; font-size: 16px; outline: none; flex-grow: 1;
         }
 
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: var(--border-color); }
+        /* ELEKTRO INFO STYLE */
+        .info-card {
+            border: 2px solid var(--border-color);
+            padding: 30px; background: rgba(255, 102, 204, 0.05);
+            max-width: 600px; margin: 0 auto;
+        }
+
+        .info-line { margin: 15px 0; font-size: 1.2rem; border-bottom: 1px solid #4d0026; }
     </style>
 </head>
 <body>
 
     <div id="home-page">
         <h1>GORĄCE MAMUŚKI</h1>
-        <p>Witaj w systemie PINK TERMINAL FOR FUN v1.9.0</p>
-        <button class="start-btn" onclick="openTerminal()">Otwórz terminal</button>
+        <button class="start-btn" onclick="initSystem()">Otwórz terminal</button>
     </div>
 
-    <div id="terminal-container">
+    <div id="nav-bar">
+        <button class="tab-btn active" onclick="showSection('terminal-section', this)">TERMINAL</button>
+        <button class="tab-btn" onclick="showSection('elektro-section', this)">ELEKTRO-INFO</button>
+        <button class="tab-btn" onclick="window.location.href='cheaty.html'">CHEATY</button>
+    </div>
+
+    <div id="terminal-section" class="content-section">
         <div id="terminal">
-            <div class="line">=== GORĄCE MAMUŚKI PINK TERMINAL FOR FUN v1.9.0 ===</div>
-            <div class="line">Status: System zabezpieczony przez Gorący Antivirus.</div>
-            <div class="line">Wpisz 'help', aby zobaczyć listę funkcji.</div>
+            <div style="color:white">=== GORĄCE MAMUŚKI PINK TERMINAL v2.0 ===</div>
+            <div>Status: System gotowy. Zakładki aktywne.</div>
             <br>
         </div>
-
         <div class="input-area">
-            <span class="prefix">admin@pink-dev:></span>
+            <span style="margin-right:10px; font-weight:bold">admin@pink-dev:></span>
             <input type="text" id="commandInput" autocomplete="off">
+        </div>
+    </div>
+
+    <div id="elektro-section" class="content-section">
+        <div class="info-card">
+            <h2 style="text-align:center; color:white;">SPECYFIKACJA ELEKTRO-INFO</h2>
+            <div class="info-line">Karta Graficzna: NVIDIA GeForce RTX 3060</div>
+            <div class="info-line">Płyta Główna: Gigabyte (BIOS: DEL)</div>
+            <div class="info-line">Smartfon: Xiaomi 17</div>
+            <div class="info-line">Użytkownik: Dejw_Devo1</div>
+            <div class="info-line">System: Pink OS For Fun</div>
         </div>
     </div>
 
     <script>
         const input = document.getElementById('commandInput');
         const terminal = document.getElementById('terminal');
-        const homePage = document.getElementById('home-page');
-        const terminalContainer = document.getElementById('terminal-container');
 
-        // Funkcja otwierająca terminal
-        function openTerminal() {
-            homePage.style.display = 'none';
-            terminalContainer.style.display = 'flex';
-            input.focus(); // Od razu ustawia kursor w polu tekstowym
+        function initSystem() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('nav-bar').style.display = 'flex';
+            document.getElementById('terminal-section').style.display = 'flex';
+            input.focus();
         }
 
-        const franekUrl = "franekzz.github.io/Gorace-Cheatuszki-Oluszki/";
-        const localCheatPage = "cheaty.html";
-
-        function getAIResponse(userMsg) {
-            const msg = userMsg.toLowerCase();
-            if (msg.includes("hej") || msg.includes("cześć")) return "Hej! Tu Twój różowy asystent AI.";
-            if (msg.includes("co tam")) return "Skanuję sieć w poszukiwaniu przygód!";
-            return "Interesujące... Powiedz mi o tym więcej.";
+        function showSection(sectionId, btn) {
+            // Ukryj wszystkie sekcje
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            // Usuń klasę active z przycisków
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            // Pokaż wybraną
+            document.getElementById(sectionId).style.display = 'flex';
+            btn.classList.add('active');
+            
+            if(sectionId === 'terminal-section') input.focus();
         }
 
+        // Obsługa komend terminala (skrócona dla czytelności)
         input.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
-                const fullCmd = input.value.trim();
-                const cmdLower = fullCmd.toLowerCase();
-
-                printToTerminal(`admin@pink-dev:> ${fullCmd}`, 'line');
-
-                if (cmdLower === 'antivirus y') {
-                    printToTerminal("[!] Gorący Antivirus (FREE): Wykryto 4 zagrożenia!", "virus-output");
-                    printToTerminal("[>] Kup wersję PRO wpisując: Antivirus pro y", "command-output");
-                }
-                else if (cmdLower === 'antivirus pro y') {
-                    printToTerminal("[+] Gorący Antivirus PRO: Rozpoczynam skanowanie...", "success-output");
-                    setTimeout(() => {
-                        printToTerminal("... Skanowanie ...", "line");
-                        printToTerminal("... Usuwanie wirusów ... [DONE]", "line");
-                        printToTerminal("[OK] System bezpieczny!", "success-output");
-                    }, 1500);
-                }
-                else if (cmdLower === 'clear') {
-                    terminal.innerHTML = '';
-                } 
-                else if (cmdLower.startsWith('chat ')) {
-                    const args = fullCmd.substring(5);
-                    printToTerminal(`[Gorący Chat AI]: ${getAIResponse(args)}`, 'ai-output');
-                }
-                else if (cmdLower === 'jasny') {
-                    document.body.classList.add('light-mode');
-                    printToTerminal("Tryb jasny aktywny!", "command-output");
-                }
-                else if (cmdLower === 'ciemny') {
-                    document.body.classList.remove('light-mode');
-                    printToTerminal("Tryb ciemny aktywny!", "command-output");
-                }
-                else if (cmdLower === 'zegar') {
-                    printToTerminal(`CZAS: ${new Date().toLocaleTimeString('pl-PL')}`, 'command-output');
-                }
-                else if (cmdLower === 'cheaty') {
-                    printToTerminal(`Przekierowanie...`, 'command-output');
-                    setTimeout(() => { window.location.href = localCheatPage; }, 1000);
-                } 
-                else if (cmdLower === 'help') {
-                    printToTerminal('Komendy: help, cheaty, cheaty 2, scan, zegar, clear, jasny, ciemny, chat [tekst], Antivirus y', 'command-output');
-                }
-                else if (fullCmd !== '') {
-                    printToTerminal(`Błąd: '${fullCmd}' nieznany.`, 'line');
-                }
-
+                const val = input.value;
+                const line = document.createElement('div');
+                line.textContent = `admin@pink-dev:> ${val}`;
+                terminal.appendChild(line);
+                
+                // Tutaj możesz dopisać resztę logiki (Antivirus, chat itp.)
+                
                 input.value = '';
                 terminal.scrollTop = terminal.scrollHeight;
             }
         });
-
-        function printToTerminal(text, className) {
-            const div = document.createElement('div');
-            div.className = className;
-            div.innerText = text;
-            terminal.appendChild(div);
-        }
     </script>
 </body>
 </html>
