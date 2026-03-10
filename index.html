@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorące Mamuśki - System v4.4 ORIGINAL</title>
+    <title>Gorące Mamuśki - System v4.6 FINAL</title>
     <style>
         :root {
             --bg-main: #1a000d;
@@ -21,10 +21,10 @@
         }
 
         /* --- NAWIGACJA --- */
-        #nav-bar { display: flex; justify-content: center; padding: 20px 0 10px 0; z-index: 100; }
+        #nav-bar { display: flex; justify-content: center; padding: 20px 0 10px 0; z-index: 100; flex-wrap: wrap; }
         .tab-btn {
             background: transparent; border: none; color: var(--pink-accent);
-            padding: 0 15px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: 0.3s;
+            padding: 5px 15px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: 0.3s;
         }
         .tab-btn:hover { color: white; text-shadow: 0 0 10px var(--border-pink); }
 
@@ -32,7 +32,7 @@
 
         /* --- SEKCJE --- */
         .content-section { display: none; height: 100vh; padding: 20px; box-sizing: border-box; flex-direction: column; overflow-y: auto; }
-        #info-section, #cert-section, #terminal-section { background-color: var(--bg-dark); color: #ffffff; }
+        .bg-black { background-color: var(--bg-dark); color: #ffffff; }
 
         #home-page { display: flex; flex-direction: column; justify-content: center; align-items: center; height: calc(100vh - 120px); text-align: center; }
         .start-btn { background: transparent; border: 2px solid var(--border-pink); color: var(--pink-accent); padding: 12px 35px; font-size: 1.1rem; cursor: pointer; font-weight: bold; margin-bottom: 10px; box-shadow: 0 0 10px var(--border-pink); }
@@ -45,15 +45,15 @@
         /* --- CERTYFIKAT --- */
         .cert-card { max-width: 600px; margin: 40px auto; padding: 30px; border: 2px solid var(--neon-blue); background: #080808; text-align: center; }
         .cert-code { font-family: 'Courier New', monospace; background: #111; padding: 15px; color: var(--neon-blue); border: 1px dashed var(--neon-blue); margin: 20px 0; }
-        .highlight { color: var(--neon-blue); font-weight: bold; }
 
         /* --- ELEKTROINFO --- */
-        .faq-container { max-width: 900px; margin: 0 auto; width: 100%; }
+        .faq-container { max-width: 1000px; margin: 0 auto; width: 100%; }
         .faq-item { background: #111; border: 1px solid #222; margin-bottom: 10px; border-radius: 6px; overflow: hidden; }
         .faq-question { width: 100%; padding: 20px; background: none; border: none; color: white; text-align: left; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; background: #080808; }
-        .faq-item.active .faq-answer { max-height: 2000px; padding: 20px; border-top: 1px solid #222; }
-        .brand-box { border-left: 3px solid var(--neon-blue); padding-left: 15px; margin-bottom: 15px; }
+        .faq-item.active .faq-answer { max-height: 5000px; padding: 20px; border-top: 1px solid #222; }
+        .highlight { color: var(--neon-blue); font-weight: bold; }
+        .step-box { background: #1a1a1a; padding: 15px; margin-bottom: 15px; border-left: 3px solid var(--border-pink); }
     </style>
 </head>
 <body>
@@ -61,6 +61,7 @@
     <div id="nav-bar">
         <button class="tab-btn" onclick="showHome()">Home</button>
         <button class="tab-btn" onclick="showSection('info-section')">ElektroInfo</button>
+        <button class="tab-btn" onclick="showSection('app-section')">ElektroApp</button>
         <button class="tab-btn" onclick="showSection('cert-section')">Certyfikat</button>
     </div>
 
@@ -72,22 +73,21 @@
         <button class="start-btn" onclick="showSection('cert-section')">Sprawdź Oryginalność</button>
     </div>
 
-    <div id="terminal-section" class="content-section">
+    <div id="terminal-section" class="content-section bg-black">
         <div id="terminal-output">
-            <div>=== GORĄCE MAMUŚKI PINK TERMINAL v4.4 ===</div>
-            <div>[SYSTEM] Inicjalizacja... OK</div>
-            <div>[USER] Dejw_Devo1 zalogowany.</div>
-            <div>[HARDWARE] RTX 3060 wykryty.</div>
+            <div>=== GORĄCE MAMUŚKI PINK TERMINAL v4.6 ===</div>
+            <div>[STATUS] System Online...</div>
+            <div>[USER] Dejw_Devo1 | GPU: RTX 3060</div>
             <div>Wpisz 'help' by zobaczyć komendy.</div>
             <br>
         </div>
         <div class="term-input-line">
             <span>admin@pink-dev:> </span>
-            <input type="text" id="term-in" autofocus onkeydown="handleTerminal(event)">
+            <input type="text" id="term-in" onkeydown="handleTerminal(event)">
         </div>
     </div>
 
-    <div id="cert-section" class="content-section">
+    <div id="cert-section" class="content-section bg-black">
         <div class="cert-card">
             <h2 style="color: var(--neon-blue);">CERTYFIKAT</h2>
             <p>Ta strona jest Oficjalna.</p>
@@ -99,59 +99,82 @@
         </div>
     </div>
 
-    <div id="info-section" class="content-section">
-        <h2 style="text-align: center; color: var(--neon-blue);">Baza Wiedzy ElektroInfo</h2>
+    <div id="app-section" class="content-section bg-black">
+        <h2 style="text-align: center; color: var(--neon-blue);">ElektroApp</h2>
+        <div style="border: 1px solid #333; padding: 20px; background: #111; max-width: 800px; margin: 0 auto;">
+            <p>[ REPOZYTORIUM PUSTE ]</p>
+        </div>
+    </div>
+
+    <div id="info-section" class="content-section bg-black">
         <div class="faq-container">
             
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">Jak wejść do BIOS/UEFI? <span>+</span></button>
+            <div class="faq-item active">
+                <button class="faq-question" onclick="toggleFaq(this)">20 TRICKÓW NA ANDROIDA 16 (WSZYSTKIE MODELE) <span>-</span></button>
                 <div class="faq-answer">
-                    Aby wejść do BIOS/UEFI, naciśnij klawisz Delete lub F2 tuż po włączeniu komputera (zanim pojawi się logo Windows). W przypadku laptopów często wymagane jest użycie F10, F1, Esc lub kombinacji z klawiszem Fn. Z poziomu systemu Windows 10/11 użyj: Ustawienia > System > Odzyskiwanie > Uruchamianie zaawansowane.<br><br>
-                    Najpopularniejsze klawisze wg producentów:<br>
-                    ASUS: Del, F2<br>
-                    Dell: F2, F12, Del<br>
-                    HP: Esc, F10<br>
-                    Lenovo: F2, Fn+F2, F1, Enter<br>
-                    MSI/Gigabyte/ASRock: Del, F2<br>
-                    Acer: F2, Del<br><br>
-                    Kluczowe porady:<br>
-                    Szybkość: Klawisz należy wciskać wielokrotnie zaraz po uruchomieniu komputera.<br>
-                    Windows 10/11: Jeśli system uruchamia się zbyt szybko, przytrzymaj Shift podczas klikania "Uruchom ponownie" w menu Start, a następnie wybierz Rozwiązywanie problemów > Opcje zaawansowane > Ustawienia oprogramowania układowego UEFI.<br>
-                    Komunikat: Zwróć uwagę na napis na ekranie startowym, np. "Press [klawisz] to enter setup".
+                    <div class="step-box">
+                        <b class="highlight">1. Xiaomi 17 (HyperOS 3): Ekstremalne Ładowanie</b><br>
+                        Wejdź w <i>Ustawienia > Bateria > Dodatkowe funkcje</i> i włącz "Boost charging speed". Telefon będzie ładował się z pełną mocą od 0 do 100%.
+                    </div>
+                    <div class="step-box">
+                        <b class="highlight">2. Xiaomi 17: Pływające Okna (Multitasking)</b><br>
+                        Otwórz dowolną aplikację, przesuń palcem od dolnego rogu ekranu do środka. Aplikacja zmieni się w ruchome okienko, które możesz przypiąć na boku.
+                    </div>
+                    <div class="step-box">
+                        <b class="highlight">3. Samsung (One UI 7): Automatyczne Rutyny</b><br>
+                        <i>Ustawienia > Tryby i rutyny</i>. Kliknij '+', wybierz 'Jeśli: Miejsce (Dom)', 'Wtedy: Wyłącz dane mobilne i włącz Wi-Fi'. System sam oszczędzi baterię.
+                    </div>
+                    <div class="step-box">
+                        <b class="highlight">4. Samsung: Schowek w Panelu Edge</b><br>
+                        <i>Ustawienia > Wyświetlacz > Panele przy krawędzi</i>. Włącz "Panele" i wybierz "Schowek". Teraz po przesunięciu palcem z boku masz dostęp do wszystkich skopiowanych tekstów i zdjęć.
+                    </div>
+                    <div class="step-box">
+                        <b class="highlight">5. Motorola: Gest "Karate" (Latarka)</b><br>
+                        Złap telefon pewnie i wykonaj dwa szybkie ruchy tnące w dół. Latarka włączy się bez odblokowywania ekranu. Powtórz, by wyłączyć.
+                    </div>
+                    <div class="step-box">
+                        <b class="highlight">6. Motorola: Szybki Aparat (Obrót)</b><br>
+                        Wykonaj dwa szybkie obroty nadgarstkiem z telefonem w dłoni. Aparat uruchomi się natychmiast.
+                    </div>
+                    <div class="step-box">
+                        <b class="highlight">7. Android 16: Tryb Desktopowy (PC Mode)</b><br>
+                        Podłącz telefon kablem USB-C do HDMI do monitora. System zapyta o "Uruchomienie trybu stacjonarnego" – otrzymasz interfejs jak w Windowsie.
+                    </div>
+                    <div class="step-box">
+                        <b class="highlight">8. Android 16: Przestrzeń Prywatna</b><br>
+                        <i>Ustawienia > Bezpieczeństwo > Przestrzeń Prywatna</i>. Stwórz oddzielny sejf na aplikacje bankowe, chroniony innym odciskiem palca niż reszta telefonu.
+                    </div>
+                    <div class="step-box">
+                        <b class="highlight">9. Android 16: Limit Ładowania 80%</b><br>
+                        <i>Ustawienia > Bateria > Ochrona baterii</i>. Wybierz limit 80%. Dzięki temu Twoje Xiaomi 17 zachowa żywotność ogniwa przez 4-5 lat bez spadków pojemności.
+                    </div>
+                    <div class="step-box">
+                        <b class="highlight">10. OnePlus / Vivo: Szybki Start</b><br>
+                        Przytrzymaj czytnik linii palca po odblokowaniu przez 2 sekundy. Pojawi się kołowe menu z Twoimi ulubionymi 5 aplikacjami.
+                    </div>
+                    <div class="step-box">
+                        <b class="highlight">11. Vivo: Super Screen Recorder</b><br>
+                        Przesuń 3 palcami w górę, aby uruchomić nagrywanie z opcją rysowania po ekranie w czasie rzeczywistym.
+                    </div>
+                    <div class="step-box">
+                        <b class="highlight">12. TCL: NXTVISION Visual Enhancement</b><br>
+                        <i>Ustawienia > NXTVISION</i>. Włącz "Video Enhancement". System AI w czasie rzeczywistym podbija kolory i kontrast w filmach na YouTube do poziomu HDR.
+                    </div>
+                    <div class="step-box"><b>13. Predictive Back:</b> Zobacz podgląd poprzedniej strony zanim puścisz palec (Gesty).</div>
+                    <div class="step-box"><b>14. Auracast:</b> Udostępnij dźwięk Bluetooth do 5 par słuchawek naraz (<i>Ustawienia Dźwięku</i>).</div>
+                    <div class="step-box"><b>15. Repair Mode:</b> Blokuje dostęp do zdjęć/maili, gdy oddajesz telefon do serwisu.</div>
+                    <div class="step-box"><b>16. Live Translate:</b> Wyświetlacz pokaże tłumaczenie na żywo podczas rozmowy telefonicznej.</div>
+                    <div class="step-box"><b>17. AI Wallpaper:</b> <i>Ustawienia > Tapeta</i>. Opisz słowami co chcesz, a Android 16 wygeneruje to sam.</div>
+                    <div class="step-box"><b>18. Screen Record: Nagrywanie Jednej Apki</b>. Wybierz opcję nagrywania "Tylko ta aplikacja", by powiadomienia z Messengera nie nagrały się na filmie.</div>
+                    <div class="step-box"><b>19. Dynamiczne Widgety:</b> Przytrzymaj widget i wybierz "Stack" – widgety będą się przewijać same zależnie od pory dnia.</div>
+                    <div class="step-box"><b>20. Wyłączanie AI:</b> Jeśli AI Cię denerwuje, wejdź w <i>Ustawienia > Funkcje Zaawansowane</i> i wyłącz "AI Intelligence".</div>
                 </div>
             </div>
 
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">10 Tricków na iPhone <span>+</span></button>
+                <button class="faq-question" onclick="toggleFaq(this)">Jak wejść do BIOS/UEFI? (Gigabyte DEL) <span>+</span></button>
                 <div class="faq-answer">
-                    1. Stuknięcie w tył: Dostępność > Dotyk > Stuknięcie w tył.<br>
-                    2. Szybki kursor: Przytrzymaj Spację na klawiaturze.<br>
-                    3. Skanowanie dokumentów: W aplikacji Notatki kliknij ikonę aparatu.<br>
-                    4. Poziomica w Aparacie: Ustawienia > Aparat > Poziom.<br>
-                    5. Ukrywanie zdjęć: Wybierz zdjęcie > Udostępnij > Ukryj.<br>
-                    6. Dźwięki tła: Dostępność > Dźwięk/Wizualne > Dźwięki tła.<br>
-                    7. Seryjne zdjęcia: Przesuń przycisk migawki w lewo.<br>
-                    8. Kopiowanie tekstu z wideo: Zatrzymaj film i przytrzymaj tekst.<br>
-                    9. Szybki powrót na górę: Dotknij paska zegara na górze.<br>
-                    10. Personalizacja blokady: Przytrzymaj palec na ekranie blokady.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">20 Tricków na Android 16 <span>+</span></button>
-                <div class="faq-answer">
-                    1. Tryb Desktopowy | 2. Gesty AI | 3. Audio Magic (Auracast) | 4. Przestrzeń Prywatna | 5. Klonowanie Appek | 6. Limit Ładowania 80% | 7. Predictive Back | 8. Skrót Latarki na czytniku | 9. Inteligentne Widgety | 10. Szybkie Tłumaczenie menu | 11. Dynamiczne Kolory | 12. Nagrywanie jednej apki | 13. Cykle Baterii | 14. Tryb Czytania (E-ink) | 15. Szybkie Wi-Fi w powiadomieniach | 16. Repair Mode | 17. Eko-Powiadomienia | 18. Gesty trybu jednoręcznego | 19. Szybki QR na blokadzie | 20. Wideo jako tapeta 4K.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">Triki: Samsung, Xiaomi 17, Motorola, Vivo, TCL <span>+</span></button>
-                <div class="faq-answer">
-                    <div class="brand-box"><b>Xiaomi 17:</b> Boost charging speed w baterii, Pływające okna (gest z rogu), Video Toolbox dla muzyki w tle.</div>
-                    <div class="brand-box"><b>Samsung:</b> Modes & Routines (automatyzacja), Edge Panels (linijka, schowek).</div>
-                    <div class="brand-box"><b>Motorola:</b> Gesty potrząśnięcia (latarka) i obrotu (aparat), Ready For (tryb PC).</div>
-                    <div class="brand-box"><b>OnePlus/Vivo:</b> Szybkie uruchamianie z czytnika, Zen Mode.</div>
-                    <div class="brand-box"><b>TCL:</b> NXTVISION (poprawa wideo HDR w locie).</div>
+                    Na Twojej płycie <b>Gigabyte</b> naciśnij klawisz <b>DEL</b> wielokrotnie zaraz po włączeniu PC. Jeśli masz Windows 11: <i>Ustawienia > Odzyskiwanie > Uruchamianie zaawansowane</i>. Przytrzymaj <b>Shift</b> przy klikaniu "Uruchom ponownie".
                 </div>
             </div>
 
@@ -173,21 +196,14 @@
 
         function handleTerminal(e) {
             if (e.key === 'Enter') {
-                const input = e.target.value.toLowerCase();
+                const val = e.target.value.toLowerCase().trim();
                 const out = document.getElementById('terminal-output');
-                const line = document.createElement('div');
-                line.innerHTML = `> ${input}`;
-                out.appendChild(line);
-
-                const res = document.createElement('div');
-                if(input === 'help') res.innerHTML = "Komendy: help, hardware, whoami, clear, exit";
-                else if(input === 'hardware') res.innerHTML = "GPU: Nvidia RTX 3060 | MOBO: Gigabyte | BIOS: DEL";
-                else if(input === 'whoami') res.innerHTML = "User: Dejw_Devo1 (Dejw_Devo1)";
-                else if(input === 'clear') { out.innerHTML = ''; e.target.value = ''; return; }
-                else if(input === 'exit') { showHome(); e.target.value = ''; return; }
-                else res.innerHTML = "Błąd: Nieznana komenda.";
-                
-                out.appendChild(res);
+                out.innerHTML += `<div>> ${val}</div>`;
+                if(val === 'help') out.innerHTML += "<div>help, hardware, whoami, clear, exit</div>";
+                else if(val === 'hardware') out.innerHTML += "<div>GPU: RTX 3060 | CPU: AMD | MOBO: Gigabyte</div>";
+                else if(val === 'whoami') out.innerHTML += "<div>User: Dejw_Devo1</div>";
+                else if(val === 'clear') out.innerHTML = '';
+                else if(val === 'exit') showHome();
                 e.target.value = '';
                 out.scrollTop = out.scrollHeight;
             }
