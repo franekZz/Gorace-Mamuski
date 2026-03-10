@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorące Mamuśki - System</title>
+    <title>Gorące Mamuśki - System v2.4</title>
     <style>
         :root {
             --bg-color: #1a000d;
@@ -11,6 +11,7 @@
             --input-bg: #2b0016;
             --border-color: #ff3399;
             --output-color: #ffffff;
+            --neon-blue: #00ffff;
         }
 
         body, html {
@@ -20,12 +21,11 @@
             overflow: hidden;
         }
 
-        /* --- MENU ZAKŁADEK --- */
+        /* --- MENU ZAKŁADEK (Tylko na stronie głównej/elektro) --- */
         #nav-bar {
-            display: none; /* Ukryte dopóki nie otworzysz terminala */
+            display: flex;
             background: #2b0016;
             border-bottom: 2px solid var(--border-color);
-            display: none;
             justify-content: flex-start;
         }
 
@@ -40,26 +40,43 @@
             background: var(--border-color); color: white;
         }
 
+        /* --- PASEK NEON BLUE --- */
+        #info-bar {
+            display: block;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid var(--neon-blue);
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: var(--neon-blue);
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+        }
+
         /* --- STRONA GŁÓWNA --- */
         #home-page {
             display: flex; flex-direction: column; justify-content: center;
-            align-items: center; height: 100vh; text-align: center;
+            align-items: center; height: calc(100vh - 95px); text-align: center;
         }
 
         .start-btn {
             background: transparent; border: 3px solid var(--border-color);
             color: var(--text-color); padding: 15px 40px; font-size: 1.5rem;
             cursor: pointer; box-shadow: 0 0 15px var(--border-color);
+            font-family: inherit; font-weight: bold;
         }
 
         /* --- KONTENERY TREŚCI --- */
         .content-section {
-            display: none; height: calc(100vh - 52px);
+            display: none; height: 100vh; /* Terminal zajmuje całość */
             padding: 20px; box-sizing: border-box;
             flex-direction: column;
         }
 
-        /* TERMINAL STYLE */
+        #terminal-section {
+            height: 100vh; /* Terminal na cały ekran */
+        }
+
         #terminal {
             border: 2px solid var(--border-color); flex-grow: 1;
             padding: 15px; overflow-y: auto; background: rgba(0, 0, 0, 0.3);
@@ -76,33 +93,34 @@
             font-family: inherit; font-size: 16px; outline: none; flex-grow: 1;
         }
 
-        /* ELEKTRO INFO STYLE */
         .info-card {
             border: 2px solid var(--border-color);
             padding: 30px; background: rgba(255, 102, 204, 0.05);
-            max-width: 600px; margin: 0 auto;
+            max-width: 600px; margin: 40px auto;
         }
-
-        .info-line { margin: 15px 0; font-size: 1.2rem; border-bottom: 1px solid #4d0026; }
     </style>
 </head>
 <body>
 
-    <div id="home-page">
-        <h1>GORĄCE MAMUŚKI</h1>
-        <button class="start-btn" onclick="initSystem()">Otwórz terminal</button>
+    <div id="nav-bar">
+        <button class="tab-btn active" onclick="showHome()">HOME</button>
+        <button class="tab-btn" onclick="showSection('elektro-section')">ELEKTRO-INFO</button>
+        <button class="tab-btn" onclick="window.location.href='cheaty.html'">CHEATY</button>
     </div>
 
-    <div id="nav-bar">
-        <button class="tab-btn active" onclick="showSection('terminal-section', this)">TERMINAL</button>
-        <button class="tab-btn" onclick="showSection('elektro-section', this)">ELEKTRO-INFO</button>
-        <button class="tab-btn" onclick="window.location.href='cheaty.html'">CHEATY</button>
+    <div id="info-bar">
+        ElektroInfo Tak to My ale Zmieniliśmy Adres strony
+    </div>
+
+    <div id="home-page">
+        <h1 style="font-size: 3rem; text-shadow: 0 0 20px var(--border-color);">GORĄCE MAMUŚKI</h1>
+        <button class="start-btn" onclick="openTerminalFull()">Otwórz terminal</button>
     </div>
 
     <div id="terminal-section" class="content-section">
         <div id="terminal">
-            <div style="color:white">=== GORĄCE MAMUŚKI PINK TERMINAL v2.0 ===</div>
-            <div>Status: System gotowy. Zakładki aktywne.</div>
+            <div style="color:white; font-weight: bold;">=== GORĄCE MAMUŚKI PINK TERMINAL v2.4 ===</div>
+            <div>Status: Zakładki ukryte. Tryb pełnoekranowy aktywny.</div>
             <br>
         </div>
         <div class="input-area">
@@ -111,53 +129,59 @@
         </div>
     </div>
 
-    <div id="elektro-section" class="content-section">
+    <div id="elektro-section" class="content-section" style="height: auto;">
         <div class="info-card">
             <h2 style="text-align:center; color:white;">SPECYFIKACJA ELEKTRO-INFO</h2>
-            <div class="info-line">Karta Graficzna: NVIDIA GeForce RTX 3060</div>
-            <div class="info-line">Płyta Główna: Gigabyte (BIOS: DEL)</div>
-            <div class="info-line">Smartfon: Xiaomi 17</div>
-            <div class="info-line">Użytkownik: Dejw_Devo1</div>
-            <div class="info-line">System: Pink OS For Fun</div>
+            <div style="margin: 10px 0;">Karta: NVIDIA GeForce RTX 3060</div>
+            <div style="margin: 10px 0;">Płyta: Gigabyte (DEL)</div>
+            <div style="margin: 10px 0;">Xiaomi: 17</div>
+            <div style="margin: 10px 0;">User: Dejw_Devo1</div>
         </div>
     </div>
 
     <script>
         const input = document.getElementById('commandInput');
         const terminal = document.getElementById('terminal');
+        const nav = document.getElementById('nav-bar');
+        const info = document.getElementById('info-bar');
 
-        function initSystem() {
+        function openTerminalFull() {
+            // Ukrywamy wszystko poza terminalem
             document.getElementById('home-page').style.display = 'none';
-            document.getElementById('nav-bar').style.display = 'flex';
+            nav.style.display = 'none';
+            info.style.display = 'none';
+            
             document.getElementById('terminal-section').style.display = 'flex';
             input.focus();
         }
 
-        function showSection(sectionId, btn) {
-            // Ukryj wszystkie sekcje
+        function showSection(sectionId) {
+            document.getElementById('home-page').style.display = 'none';
             document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
-            // Usuń klasę active z przycisków
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             
-            // Pokaż wybraną
             document.getElementById(sectionId).style.display = 'flex';
-            btn.classList.add('active');
-            
-            if(sectionId === 'terminal-section') input.focus();
+            // W Elektro-Info zostawiamy menu
+            nav.style.display = 'flex';
+            info.style.display = 'block';
         }
 
-        // Obsługa komend terminala (skrócona dla czytelności)
+        function showHome() {
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            document.getElementById('home-page').style.display = 'flex';
+            nav.style.display = 'flex';
+            info.style.display = 'block';
+        }
+
         input.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 const val = input.value;
-                const line = document.createElement('div');
-                line.textContent = `admin@pink-dev:> ${val}`;
-                terminal.appendChild(line);
-                
-                // Tutaj możesz dopisać resztę logiki (Antivirus, chat itp.)
-                
-                input.value = '';
-                terminal.scrollTop = terminal.scrollHeight;
+                if(val.trim() !== "") {
+                    const line = document.createElement('div');
+                    line.textContent = `admin@pink-dev:> ${val}`;
+                    terminal.appendChild(line);
+                    input.value = '';
+                    terminal.scrollTop = terminal.scrollHeight;
+                }
             }
         });
     </script>
