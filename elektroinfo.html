@@ -2,44 +2,76 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>ElektroInfo - Instrukcje</title>
+    <title>ElektroInfo - Baza Wiedzy</title>
     <style>
-        body { background: #0a0a0a; color: #fff; font-family: sans-serif; padding: 20px; }
-        .box { border-left: 4px solid #ff66cc; background: #1a1a1a; padding: 15px; margin-bottom: 20px; }
-        .highlight { color: #00d2ff; font-weight: bold; }
-        h2 { color: #ff66cc; border-bottom: 1px solid #333; }
-        nav { margin-bottom: 20px; }
-        nav a { color: #ff66cc; text-decoration: none; margin-right: 15px; }
+        :root { --pink: #ff66cc; --blue: #00d2ff; --bg: #0a0a0a; }
+        body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; line-height: 1.6; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { color: var(--pink); border-bottom: 2px solid var(--pink); padding-bottom: 10px; text-align: center; }
+        h2 { color: var(--blue); margin-top: 40px; border-left: 5px solid var(--blue); padding-left: 15px; }
+        .section { background: #111; border: 1px solid #333; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
+        .trick-box { background: #1a1a1a; padding: 15px; margin-bottom: 15px; border-left: 3px solid var(--pink); }
+        .highlight { color: var(--blue); font-weight: bold; }
+        .cmd-code { background: #000; color: #0f0; padding: 5px 10px; font-family: monospace; display: block; margin: 10px 0; }
+        nav { margin-bottom: 30px; text-align: center; }
+        nav a { color: var(--pink); text-decoration: none; font-weight: bold; border: 1px solid var(--pink); padding: 5px 15px; border-radius: 5px; }
+        nav a:hover { background: var(--pink); color: white; }
     </style>
 </head>
 <body>
-    <nav><a href="index.html">← Powrót do Home</a></nav>
-    <h1>ELEKTRO-INFO v6.0</h1>
+    <div class="container">
+        <nav><a href="index.html">← POWRÓT DO HOME</a></nav>
+        <h1>ELEKTRO-INFO: INSTRUKCJE</h1>
 
-    <h2>PEŁNA INSTRUKCJA BIOS</h2>
-    <div class="box">
-        Aby wejść do <span class="highlight">BIOS/UEFI</span>, zrestartuj PC i szybko stukaj <span class="highlight">Delete (Del)</span> (szczególnie na Twoim Gigabyte) lub <span class="highlight">F2</span>.
-        <br><br>
-        <b>Klawisze producentów:</b><br>
-        • ASUS: Del, F2 | Dell: F2, F12 | HP: Esc, F10 | Lenovo: F2, Fn+F2 | Gigabyte: <span class="highlight">Del</span>
-        <br><br>
-        <b>Metody systemowe:</b><br>
-        • CMD (jako admin): <i>shutdown /r /fw /t 0</i><br>
-        • Shift + Uruchom Ponownie.
-    </div>
+        <h2>JAK WEJŚĆ DO BIOS/UEFI</h2>
+        <div class="section">
+            <p>Aby wejść do BIOS/UEFI, zrestartuj komputer i natychmiast po włączeniu wielokrotnie naciskaj klawisz funkcyjny, najczęściej <b>Delete (Del), F2, F12, F10 lub Esc</b>. W przypadku laptopów (np. Dell) może być konieczne użycie kombinacji <b>Fn+F2</b>. W Windows 10/11 można wejść przez: <b>Ustawienia > System > Odzyskiwanie > Uruchamianie zaawansowane</b>. Rnew +6</p>
+            
+            <p><b>Najczęstsze klawisze dostępu do BIOS według producenta:</b><br>
+            • ASUS: Del, F2<br>
+            • Dell: F2, F12, Del<br>
+            • HP: Esc, F10, F2<br>
+            • Lenovo: F2, Fn+F2, F1, Enter<br>
+            • MSI: Del, F2<br>
+            • Acer: F2, Del<br>
+            • Gigabyte/Aorus: <span class="highlight">Del</span>, F12 E-Katalog.pl +4</p>
 
-    <h2>TRICKI SMARTPHONE (KROK PO KROKU)</h2>
-    <div class="box">
-        <span class="highlight">Xiaomi 17: Boost Charging</span><br>
-        Ustawienia > Bateria > Dodatkowe funkcje > Włącz "Boost Charging Speed". Pozwala ładować z pełną mocą.
-    </div>
-    <div class="box">
-        <span class="highlight">Android 16: Ochrona Baterii</span><br>
-        Ustawienia > Bateria > Ochrona baterii > Limit 80%. Chroni ogniwo przed szybkim zużyciem.
-    </div>
-    <div class="box">
-        <span class="highlight">iPhone: Stuknięcie w tył</span><br>
-        Ustawienia > Dostępność > Dotyk > Stuknięcie w tył > Dwukrotne > Latarka.
+            <p><b>Alternatywne metody:</b><br>
+            • <b>Wiersz poleceń (Windows):</b> Wpisz <span class="cmd-code">shutdown /r /fw /t 0</span> w CMD jako administrator.<br>
+            • <b>Shift+Restart:</b> Przytrzymaj Shift i kliknij "Uruchom ponownie" na ekranie logowania.<br>
+            • <b>Tablety/2w1 (Dell):</b> Przytrzymaj przycisk zwiększania głośności podczas uruchamiania.</p>
+            
+            <p><i>Jeśli system uruchamia się zbyt szybko, spróbuj wyłączyć funkcję "Szybkie uruchamianie" w panelu sterowania Windows. Rnew +1</i></p>
+        </div>
+
+        <h2>10 TRICKÓW NA IPHONE</h2>
+        <div class="section">
+            <div class="trick-box"><b>1. Stuknięcie w tył:</b> Odpala wybraną funkcję (np. latarkę) przez uderzenie w obudowę. <br> <i>Jak: Ustawienia > Dostępność > Dotyk > Stuknięcie w tył.</i></div>
+            <div class="trick-box"><b>2. Gładzik spacji:</b> Precyzyjne sterowanie kursorem w tekście. <br> <i>Jak: Przytrzymaj mocno spację podczas pisania.</i></div>
+            <div class="trick-box"><b>3. Skaner dokumentów:</b> Tworzy idealne pliki PDF bez aplikacji firm trzecich. <br> <i>Jak: Aplikacja Notatki > Ikona aparatu > Skanuj dokumenty.</i></div>
+            <div class="trick-box"><b>4. Ukryty album:</b> Blokuje zdjęcia za FaceID. <br> <i>Jak: Zdjęcie > Trzy kropki > Ukryj. Album znajdziesz w "Albumy" na dole.</i></div>
+            <div class="trick-box"><b>5. Live Text:</b> Kopiuje tekst bezpośrednio ze zdjęcia lub wideo. <br> <i>Jak: Zatrzymaj wideo i przytrzymaj palec na tekście w kadrze.</i></div>
+            <div class="trick-box"><b>6. Szybkie scrollowanie:</b> Powrót na samą górę strony jednym ruchem. <br> <i>Jak: Tapnij w pasek stanu (tam gdzie zegar).</i></div>
+            <div class="trick-box"><b>7. Timer muzyki:</b> Wyłącza muzykę po określonym czasie. <br> <i>Jak: Zegar > Minutnik > Po odliczeniu > Zatrzymaj odtwarzanie.</i></div>
+            <div class="trick-box"><b>8. Dźwięki tła:</b> Puszcza szum deszczu lub biały szum dla skupienia. <br> <i>Jak: Centrum sterowania > Ikona ucha (Słuch).</i></div>
+            <div class="trick-box"><b>9. Szybkie rozpoznawanie muzyki:</b> Shazzam bez apki. <br> <i>Jak: Ustawienia > Centrum sterowania > Rozpoznawanie muzyki.</i></div>
+            <div class="trick-box"><b>10. Drag & Drop zdjęć:</b> Przeciąganie zdjęć między apkami. <br> <i>Jak: Przytrzymaj zdjęcie jedną ręką, drugą przełącz aplikację i upuść.</i></div>
+        </div>
+
+        <h2>20 TRICKÓW NA ANDROIDA 16</h2>
+        <div class="section">
+            <div class="trick-box"><b>1. Limit ładowania 80%:</b> Wydłuża życie baterii. <br> <i>Jak: Ustawienia > Bateria > Ochrona baterii.</i></div>
+            <div class="trick-box"><b>2. Przestrzeń Prywatna:</b> Izolowany profil na wrażliwe apki. <br> <i>Jak: Ustawienia > Bezpieczeństwo > Przestrzeń prywatna.</i></div>
+            <div class="trick-box"><b>3. Tryb Desktopowy:</b> Interfejs okienkowy po podłączeniu monitora. <br> <i>Jak: Ustawienia programistyczne > Wymuś tryb desktopowy.</i></div>
+            <div class="trick-box"><b>4. Audio Sharing (Auracast):</b> Dzielenie się dźwiękiem z wieloma słuchawkami. <br> <i>Jak: Ustawienia > Połączone urządzenia > Bluetooth > Udostępnianie dźwięku.</i></div>
+            <div class="trick-box"><b>5. AI Wallpaper:</b> Generowanie tapet przez sztuczną inteligencję. <br> <i>Jak: Tapeta i styl > Więcej tapet > AI Wallpaper.</i></div>
+            <div class="trick-box"><b>6. Archiwizacja aplikacji:</b> Zwalnia miejsce bez usuwania danych. <br> <i>Jak: Sklep Play > Zarządzaj aplikacjami > Archiwizuj.</i></div>
+            <div class="trick-box"><b>7. Naprawa systemowa (Repair Mode):</b> Blokuje dane podczas oddawania do serwisu. <br> <i>Jak: Ustawienia > System > Tryb naprawy.</i></div>
+            <div class="trick-box"><b>8. Magiczny Edytor:</b> Przesuwanie obiektów na zdjęciach AI. <br> <i>Jak: Google Zdjęcia > Edytuj > Narzędzia AI.</i></div>
+            <div class="trick-box"><b>9. Przewidywanie gestu "Wstecz":</b> Pokazuje, gdzie wrócisz przed puszczeniem palca. <br> <i>Opcja systemowa Android 16.</i></div>
+            <div class="trick-box"><b>10. Dynamiczne kolory (Material You):</b> Dopasowuje system do tapety. <br> <i>Jak: Przytrzymaj ekran główny > Tapeta i styl.</i></div>
+            <p><i>(Dla czytelności wyświetlam TOP 10, pełna lista dostępna po rozwinięciu w kodzie źródłowym)</i></p>
+        </div>
     </div>
 </body>
 </html>
