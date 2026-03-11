@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorące Mamuśki - System v4.9 FINAL</title>
+    <title>Gorące Mamuśki - System v5.1 OFFICIAL</title>
     <style>
         :root {
             --bg-main: #1a000d;
@@ -35,7 +35,12 @@
         .bg-black { background-color: var(--bg-dark); color: #ffffff; }
 
         #home-page { display: flex; flex-direction: column; justify-content: center; align-items: center; height: calc(100vh - 120px); text-align: center; }
-        .start-btn { background: transparent; border: 2px solid var(--border-pink); color: var(--pink-accent); padding: 12px 35px; font-size: 1.1rem; cursor: pointer; font-weight: bold; margin-bottom: 10px; box-shadow: 0 0 10px var(--border-pink); }
+        .start-btn { background: transparent; border: 2px solid var(--border-pink); color: var(--pink-accent); padding: 12px 35px; font-size: 1.1rem; cursor: pointer; font-weight: bold; margin-bottom: 10px; box-shadow: 0 0 10px var(--border-pink); transition: 0.3s; }
+        .start-btn:hover { background: var(--border-pink); color: white; }
+
+        /* Przycisk pobierania */
+        .dl-btn { display: inline-block; background: var(--border-pink); color: white; text-decoration: none; padding: 15px 25px; font-weight: bold; border-radius: 5px; box-shadow: 0 0 15px var(--border-pink); transition: 0.3s; border: 1px solid white; }
+        .dl-btn:hover { background: var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue); transform: scale(1.05); }
 
         /* --- TERMINAL --- */
         #terminal-output { flex-grow: 1; overflow-y: auto; padding: 15px; border: 1px solid var(--border-pink); background: #000; color: var(--pink-accent); font-family: 'Courier New', monospace; margin-bottom: 10px; }
@@ -47,13 +52,14 @@
         .cert-code { font-family: 'Courier New', monospace; background: #111; padding: 15px; color: var(--neon-blue); border: 1px dashed var(--neon-blue); margin: 20px 0; word-break: break-all; }
 
         /* --- ELEKTROINFO --- */
-        .faq-container { max-width: 1000px; margin: 0 auto; width: 100%; }
+        .faq-container { max-width: 1000px; margin: 0 auto; width: 100%; padding-bottom: 50px; }
         .faq-item { background: #111; border: 1px solid #222; margin-bottom: 10px; border-radius: 6px; overflow: hidden; }
         .faq-question { width: 100%; padding: 20px; background: none; border: none; color: white; text-align: left; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; background: #080808; }
-        .faq-item.active .faq-answer { max-height: 10000px; padding: 20px; border-top: 1px solid #222; }
+        .faq-item.active .faq-answer { max-height: 15000px; padding: 20px; border-top: 1px solid #222; }
         .highlight { color: var(--neon-blue); font-weight: bold; }
         .step-box { background: #1a1a1a; padding: 15px; margin-bottom: 15px; border-left: 3px solid var(--border-pink); line-height: 1.6; }
+        .trick-num { color: var(--border-pink); font-weight: bold; margin-right: 5px; }
     </style>
 </head>
 <body>
@@ -76,7 +82,7 @@
 
     <div id="terminal-section" class="content-section bg-black">
         <div id="terminal-output">
-            <div>=== GORĄCE MAMUŚKI PINK TERMINAL v4.9 ===</div>
+            <div>=== GORĄCE MAMUŚKI PINK TERMINAL v5.1 ===</div>
             <div>[STATUS] System Online...</div>
             <div>[USER] Dejw_Devo1 | GPU: RTX 3060</div>
             <div>Wpisz 'help' by zobaczyć komendy.</div>
@@ -109,71 +115,52 @@
 
     <div id="app-pc-section" class="content-section bg-black">
         <h2 style="text-align: center; color: var(--neon-blue);">ElektroAppPC</h2>
-        <div style="border: 1px solid #333; padding: 20px; background: #111; max-width: 800px; margin: 0 auto; text-align: center;">
-            <p>[ REPOZYTORIUM PC PUSTE - CZEKAMY NA PLIKI .EXE ]</p>
+        <div style="border: 1px solid #333; padding: 40px; background: #111; max-width: 800px; margin: 0 auto; text-align: center;">
+            <p style="margin-bottom: 30px;">Dostępne narzędzia dla systemu Windows:</p>
+            <a href="https://www.mediafire.com/file/mwn6jqpy63mr9jk/Skaner.zip/file" target="_blank" class="dl-btn">
+                Pobierz WindowsPcInfoTRIAL V1.0
+            </a>
+            <p style="font-size: 0.8rem; color: #666; margin-top: 20px;">Skaner.zip (Narzędzie diagnostyczne)</p>
         </div>
     </div>
 
     <div id="info-section" class="content-section bg-black">
         <div class="faq-container">
             
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">JAK WEJŚĆ DO BIOSU (PEŁNA INSTRUKCJA) <span>+</span></button>
+            <div class="faq-item active">
+                <button class="faq-question" onclick="toggleFaq(this)">20 TRICKÓW NA ANDROIDA 16 (DLA TWOJEGO XIAOMI I INNYCH) <span>-</span></button>
                 <div class="faq-answer">
-                    <div class="step-box">
-                        Aby wejść do <span class="highlight">BIOS/UEFI</span>, naciśnij klawisz <span class="highlight">Delete</span> lub <span class="highlight">F2</span> tuż po włączeniu komputera (zanim pojawi się logo Windows). W przypadku laptopów często wymagane jest użycie <span class="highlight">F10, F1, Esc</span> lub kombinacji z klawiszem <span class="highlight">Fn</span>. Z poziomu systemu Windows 10/11 użyj: <span class="highlight">Ustawienia > System > Odzyskiwanie > Uruchamianie zaawansowane</span>.<br><br>
-                        <b>Najpopularniejsze klawisze wg producentów:</b><br>
-                        • <b>ASUS:</b> Del, F2<br>
-                        • <b>Dell:</b> F2, F12, Del<br>
-                        • <b>HP:</b> Esc, F10<br>
-                        • <b>Lenovo:</b> F2, Fn+F2, F1, Enter<br>
-                        • <b>MSI / Gigabyte / ASRock:</b> <span class="highlight">Del</span>, F2<br>
-                        • <b>Acer:</b> F2, Del<br><br>
-                        <b>Kluczowe porady:</b><br>
-                        • <b>Szybkość:</b> Klawisz należy wciskać wielokrotnie zaraz po uruchomieniu komputera.<br>
-                        • <b>Windows 10/11:</b> Jeśli system uruchamia się zbyt szybko, przytrzymaj <span class="highlight">Shift</span> podczas klikania "Uruchom ponownie" w menu Start, a następnie wybierz Rozwiązywanie problemów > Opcje zaawansowane > Ustawienia oprogramowania układowego UEFI.<br>
-                        • <b>Komunikat:</b> Zwróć uwagę na napis na ekranie startowym, np. "Press [klawisz] to enter setup".
-                    </div>
+                    <div class="step-box"><span class="trick-num">1. Xiaomi 17: Boost Charging Speed.</span> Ustawienia > Bateria > Dodatkowe funkcje.</div>
+                    <div class="step-box"><span class="trick-num">2. Xiaomi 17: Pływające okna.</span> Gest od dolnego rogu.</div>
+                    <div class="step-box"><span class="trick-num">3. Samsung: Rutyny.</span> Automatyzacja Wi-Fi i oszczędzania baterii.</div>
+                    <div class="step-box"><span class="trick-num">4. Motorola: Gest Karate.</span> Dwukrotne potrząśnięcie dla latarki.</div>
+                    <div class="step-box"><span class="trick-num">5. Motorola: Gest Aparatu.</span> Obrót nadgarstkiem.</div>
+                    <div class="step-box"><span class="trick-num">6. Android 16: Tryb Desktopowy.</span> Podłączenie monitora przez USB-C.</div>
+                    <div class="step-box"><span class="trick-num">7. Przestrzeń Prywatna.</span> Drugi sejf na aplikacje.</div>
+                    <div class="step-box"><span class="trick-num">8. Limit ładowania 80%.</span> Ochrona baterii w Xiaomi 17.</div>
+                    <div class="step-box"><span class="trick-num">9. Predictive Back.</span> Podgląd cofania strony.</div>
+                    <div class="step-box"><span class="trick-num">10. Auracast Audio.</span> Wiele par słuchawek naraz.</div>
+                    <div class="step-box"><span class="trick-num">11. Repair Mode.</span> Blokada danych dla serwisu.</div>
+                    <div class="step-box"><span class="trick-num">12. TCL NXTVISION.</span> Podbicie kolorów do HDR.</div>
+                    <div class="step-box"><span class="trick-num">13. Nagrywanie jednej apki.</span> Selektywne nagrywanie ekranu.</div>
+                    <div class="step-box"><span class="trick-num">14. AI Wallpaper.</span> Tapety generowane z tekstu.</div>
+                    <div class="step-box"><span class="trick-num">15. Szybkie kopiowanie.</span> Tekst z widoku ostatnich apek.</div>
+                    <div class="step-box"><span class="trick-num">16. Dynamiczne Widgety.</span> Przewijane stosy widgetów.</div>
+                    <div class="step-box"><span class="trick-num">17. Vivo Szybki Start.</span> Skróty z czytnika linii.</div>
+                    <div class="step-box"><span class="trick-num">18. Ochrona przed spamem.</span> AI filtruje połączenia botów.</div>
+                    <div class="step-box"><span class="trick-num">19. Eko-Powiadomienia.</span> Oszczędność ekranu.</div>
+                    <div class="step-box"><span class="trick-num">20. Wyłączanie AI Intelligence.</span> Pełna prywatność w ustawieniach.</div>
                 </div>
             </div>
 
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">AMD - SZYBKIE PRACOWANIE I BOOTOWANIE <span>+</span></button>
+                <button class="faq-question" onclick="toggleFaq(this)">JAK WEJŚĆ DO BIOSU (PEŁNA INSTRUKCJA DLA KAŻDEGO) <span>+</span></button>
                 <div class="faq-answer">
                     <div class="step-box">
-                        <b class="highlight">Optymalizacja AMD:</b> Pamiętaj o włączeniu funkcji <span class="highlight">DOCP</span> lub <span class="highlight">XMP</span> w BIOSie, aby Twoje ramy działały z pełną prędkością. Jeśli masz płytę <b>Gigabyte</b>, szukaj tej opcji w zakładce <span class="highlight">"Tweaker"</span>.
+                        Aby wejść do <span class="highlight">BIOS/UEFI</span>, naciśnij <span class="highlight">Delete</span> lub <span class="highlight">F2</span> tuż po włączeniu komputera. <br><br>
+                        • <b>ASUS:</b> Del, F2<br>• <b>Dell:</b> F2, F12, Del<br>• <b>HP:</b> Esc, F10<br>• <b>Lenovo:</b> F2, Fn+F2, F1, Enter<br>• <b>MSI / Gigabyte / ASRock:</b> <span class="highlight">Del</span>, F2<br>• <b>Acer:</b> F2, Del<br><br>
+                        <b>Metoda Shift:</b> Przytrzymaj <span class="highlight">Shift</span> przy klikaniu "Uruchom ponownie" > Rozwiązywanie problemów > UEFI.
                     </div>
-                    <div class="step-box">
-                        <b class="highlight">Bootowanie:</b> Jeśli system nie startuje, sprawdź w BIOS kolejność <span class="highlight">Boot Priority</span>. Dysk SSD/HDD z systemem musi być pierwszy.
-                    </div>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">10 TRICKÓW NA IPHONE <span>+</span></button>
-                <div class="faq-answer">
-                    <div class="step-box">
-                        1. <b>Stuknięcie w tył:</b> Ustawienia > Dostępność > Dotyk > Stuknięcie w tył.<br>
-                        2. <b>Gładzik:</b> Przytrzymaj Spację na klawiaturze.<br>
-                        3. <b>Skaner:</b> Aparat w Notatkach.<br>
-                        4. <b>Poziomica:</b> Ustawienia Aparatu > Poziom.<br>
-                        5. <b>Ukryte:</b> FaceID dla albumu ukrytego.<br>
-                        6. <b>Dźwięki tła:</b> Szum deszczu w Dostępności.<br>
-                        7. <b>Seryjne:</b> Migawka w lewo.<br>
-                        8. <b>Live Text:</b> Kopiuj tekst z filmów.<br>
-                        9. <b>Szybka góra:</b> Kliknij w zegar.<br>
-                        10. <b>Widgety:</b> Edycja na zablokowanym ekranie.
-                    </div>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">20 TRICKÓW NA ANDROIDA 16 I MODELE <span>+</span></button>
-                <div class="faq-answer">
-                    <div class="step-box"><b class="highlight">Xiaomi 17:</b> Włącz "Boost charging speed" (Bateria), Pływające okna (gest z rogu), Video Toolbox.</div>
-                    <div class="step-box"><b class="highlight">Samsung:</b> Rutyny (automatyzacja Wi-Fi), Panele Edge (linijka, schowek).</div>
-                    <div class="step-box"><b class="highlight">Motorola:</b> Gest karate dla latarki, obrót dla aparatu.</div>
-                    <div class="step-box"><b class="highlight">Android 16:</b> Desktop mode, Private Space (sejf), Limit ładowania 80%, Predictive Back, Auracast, Repair Mode, AI Wallpaper.</div>
                 </div>
             </div>
         </div>
@@ -191,14 +178,13 @@
             document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
             document.getElementById('home-page').style.display = 'flex';
         }
-
         function handleTerminal(e) {
             if (e.key === 'Enter') {
                 const val = e.target.value.toLowerCase().trim();
                 const out = document.getElementById('terminal-output');
                 out.innerHTML += `<div>> ${val}</div>`;
-                if(val === 'help') out.innerHTML += "<div>Komendy: help, hardware, whoami, clear, exit</div>";
-                else if(val === 'hardware') out.innerHTML += "<div>GPU: RTX 3060 | CPU: AMD | MOBO: Gigabyte</div>";
+                if(val === 'help') out.innerHTML += "<div>help, hardware, whoami, clear, exit</div>";
+                else if(val === 'hardware') out.innerHTML += "<div>GPU: RTX 3060 | MOBO: Gigabyte | BIOS: DEL</div>";
                 else if(val === 'whoami') out.innerHTML += "<div>User: Dejw_Devo1</div>";
                 else if(val === 'clear') out.innerHTML = '<div>=== TERMINAL ===</div>';
                 else if(val === 'exit') showHome();
