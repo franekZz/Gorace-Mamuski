@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorące Mamuśki - System v5.5 ULTIMATE GUIDE</title>
+    <title>Gorące Mamuśki - System v5.6 OFFICIAL</title>
     <style>
         :root {
             --bg-main: #1a000d;
@@ -40,15 +40,18 @@
         .dl-btn { display: inline-block; background: var(--border-pink); color: white; text-decoration: none; padding: 15px 25px; font-weight: bold; border-radius: 5px; box-shadow: 0 0 15px var(--border-pink); transition: 0.3s; border: 1px solid white; margin-bottom: 15px; }
         .help-link { display: block; color: var(--neon-blue); text-decoration: none; font-weight: bold; font-size: 1rem; margin-top: 10px; }
 
+        /* --- CERTYFIKAT STYLE --- */
+        .cert-card { max-width: 600px; margin: 40px auto; padding: 30px; border: 2px solid var(--neon-blue); background: #080808; text-align: center; box-shadow: 0 0 20px rgba(0, 210, 255, 0.2); }
+        .cert-code { font-family: 'Courier New', monospace; background: #111; padding: 15px; color: var(--neon-blue); border: 1px dashed var(--neon-blue); margin: 20px 0; word-break: break-all; }
+
         /* --- ELEKTROINFO STYLE --- */
         .faq-container { max-width: 1000px; margin: 0 auto; width: 100%; padding-bottom: 100px; }
         .faq-item { background: #111; border: 1px solid #222; margin-bottom: 10px; border-radius: 6px; overflow: hidden; }
         .faq-question { width: 100%; padding: 20px; background: none; border: none; color: white; text-align: left; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; background: #080808; }
-        .faq-item.active .faq-answer { max-height: 50000px; padding: 20px; border-top: 1px solid #222; }
+        .faq-item.active .faq-answer { max-height: 5000px; padding: 20px; border-top: 1px solid #222; }
         .highlight { color: var(--neon-blue); font-weight: bold; }
         .step-box { background: #1a1a1a; padding: 15px; margin-bottom: 15px; border-left: 3px solid var(--border-pink); line-height: 1.6; }
-        .sub-header { color: var(--pink-accent); font-weight: bold; border-bottom: 1px solid #333; margin-top: 15px; display: block; }
     </style>
 </head>
 <body>
@@ -70,13 +73,25 @@
 
     <div id="terminal-section" class="content-section bg-black">
         <div id="terminal-output">
-            <div>=== GORĄCE MAMUŚKI PINK TERMINAL v5.5 ===</div>
+            <div>=== GORĄCE MAMUŚKI PINK TERMINAL v5.6 ===</div>
             <div>[USER] Dejw_Devo1 | GPU: RTX 3060</div>
             <br>
         </div>
         <div class="term-input-line" style="display: flex; background: #000; padding: 10px; border: 1px solid var(--border-pink);">
             <span>admin@pink-dev:> </span>
             <input type="text" id="term-in" onkeydown="handleTerminal(event)" style="background: transparent; border: none; color: white; outline: none; flex-grow: 1;">
+        </div>
+    </div>
+
+    <div id="cert-section" class="content-section bg-black">
+        <div class="cert-card">
+            <h2 style="color: var(--neon-blue);">CERTYFIKAT</h2>
+            <p>Ta strona jest Oficjalna.</p>
+            <div class="cert-code">UIXIAOMI!&ZASZYFROWANE!@#$%^&*()</div>
+            <div style="text-align: left; margin-top: 20px; color: white;">
+                <p>📧 Gmail: <span class="highlight">franekzz2293@gmail.com</span></p>
+                <p>📞 Telefon: <span class="highlight">514 600 607</span></p>
+            </div>
         </div>
     </div>
 
@@ -90,57 +105,25 @@
 
     <div id="info-section" class="content-section bg-black">
         <div class="faq-container">
-            
             <div class="faq-item active">
-                <button class="faq-question" onclick="toggleFaq(this)">1. BIOS: WEJŚCIE I OBSŁUGA (KROK PO KROKU) <span>-</span></button>
+                <button class="faq-question" onclick="toggleFaq(this)">1. BIOS: KROK PO KROKU <span>-</span></button>
                 <div class="faq-answer">
                     <div class="step-box">
-                        <span class="highlight">Jak wejść:</span> Zrestartuj PC. Gdy ekran jest czarny, stukaj szybko <span class="highlight">Delete</span> (Gigabyte/MSI) lub <span class="highlight">F2</span> (ASUS/Laptopy).<br>
-                        <span class="highlight">Co robić w środku:</span> 
-                        • <b>XMP/DOCP:</b> Przyspiesza RAM. Wejdź w <i>Tweaker/OC</i> > <i>XMP</i> > wybierz <i>Profile 1</i>.<br>
-                        • <b>Boot Order:</b> Wybiera dysk startowy. Zakładka <i>Boot</i> > <i>Option #1</i> > wybierz swój SSD.<br>
-                        • <b>Zapis:</b> Kliknij <span class="highlight">F10</span> i Enter.
+                        <b>Wejście:</b> Reset PC + klikaj <span class="highlight">Del</span> (Gigabyte) / F2.<br>
+                        <b>W środku:</b> Zakładka <i>Tweaker</i> > <i>XMP/DOCP</i> na Profile 1 (przyspiesza RAM). Zakładka <i>Boot</i> > wybierz dysk SSD. <span class="highlight">F10</span> aby zapisać.
                     </div>
                 </div>
             </div>
-
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">2. ANDROID 16 & XIAOMI 17: INSTRUKCJA KROK PO KROKU <span>+</span></button>
+                <button class="faq-question" onclick="toggleFaq(this)">2. SMARTPHONE TRICKI (INSTRUKCJA) <span>+</span></button>
                 <div class="faq-answer">
-                    <span class="sub-header">Dla Twojego Xiaomi 17:</span>
                     <div class="step-box">
-                        <b>1. Boost Charging Speed:</b> (Szybsze ładowanie)<br>
-                        • <i>Jak:</i> Ustawienia > Bateria > Dodatkowe funkcje > Włącz "Zwiększ prędkość ładowania".<br>
-                        <b>2. Pływające Okna:</b> (Multitasking)<br>
-                        • <i>Jak:</i> Otwórz widok ostatnich aplikacji, przytrzymaj palec na apce i kliknij ikonę dwóch kwadratów.
-                    </div>
-
-                    <span class="sub-header">Nowości Android 16:</span>
-                    <div class="step-box">
-                        <b>3. Przestrzeń Prywatna:</b> (Ukryty profil na apki bankowe/prywatne)<br>
-                        • <i>Jak:</i> Ustawienia > Bezpieczeństwo i prywatność > Przestrzeń prywatna. Wymaga osobnego PINu.<br>
-                        <b>4. Limit ładowania 80%:</b> (Ratowanie baterii przed zużyciem)<br>
-                        • <i>Jak:</i> Ustawienia > Bateria > Ochrona baterii > Limit 80%. System nie pozwoli naładować wyżej, co przedłuża życie ogniwa o lata.
+                        <b>Xiaomi 17:</b> Ustawienia > Bateria > Dodatkowe funkcje > Boost Charging Speed.<br>
+                        <b>Android 16:</b> Ustawienia > Bateria > Ochrona > Limit 80%.<br>
+                        <b>iPhone:</b> Ustawienia > Dostępność > Dotyk > Stuknięcie w tył (Latarka).
                     </div>
                 </div>
             </div>
-
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">3. IPHONE: INSTRUKCJA KROK PO KROKU <span>+</span></button>
-                <div class="faq-answer">
-                    <div class="step-box">
-                        <b>1. Stuknięcie w tył:</b> (Uruchamia latarkę/aparat stuknięciem w obudowę)<br>
-                        • <i>Jak:</i> Ustawienia > Dostępność > Dotyk > Stuknięcie w tył > Dwukrotne stuknięcie > Wybierz akcję.<br><br>
-                        <b>2. Skanowanie dokumentów:</b> (Robi idealny skan do PDF)<br>
-                        • <i>Jak:</i> Otwórz aplikację <i>Notatki</i> > kliknij ikonę Aparatu > Skanuj dokumenty.<br><br>
-                        <b>3. Gładzik klawiatury:</b> (Precyzyjne poprawianie błędów)<br>
-                        • <i>Jak:</i> Podczas pisania przytrzymaj mocno klawisz <i>Spacja</i> – teraz możesz przesuwać kursor jak myszką.<br><br>
-                        <b>4. Ukrywanie zdjęć:</b> (Blokada albumu na FaceID)<br>
-                        • <i>Jak:</i> Wybierz zdjęcie > kliknij trzy kropki > Ukryj. Album "Ukryte" znajdziesz na samym dole w zakładce Albumy (wymaga FaceID).
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 
