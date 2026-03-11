@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorące Mamuśki - System v5.1 OFFICIAL</title>
+    <title>Gorące Mamuśki - System v5.5 ULTIMATE GUIDE</title>
     <style>
         :root {
             --bg-main: #1a000d;
@@ -36,30 +36,19 @@
 
         #home-page { display: flex; flex-direction: column; justify-content: center; align-items: center; height: calc(100vh - 120px); text-align: center; }
         .start-btn { background: transparent; border: 2px solid var(--border-pink); color: var(--pink-accent); padding: 12px 35px; font-size: 1.1rem; cursor: pointer; font-weight: bold; margin-bottom: 10px; box-shadow: 0 0 10px var(--border-pink); transition: 0.3s; }
-        .start-btn:hover { background: var(--border-pink); color: white; }
 
-        /* Przycisk pobierania */
-        .dl-btn { display: inline-block; background: var(--border-pink); color: white; text-decoration: none; padding: 15px 25px; font-weight: bold; border-radius: 5px; box-shadow: 0 0 15px var(--border-pink); transition: 0.3s; border: 1px solid white; }
-        .dl-btn:hover { background: var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue); transform: scale(1.05); }
+        .dl-btn { display: inline-block; background: var(--border-pink); color: white; text-decoration: none; padding: 15px 25px; font-weight: bold; border-radius: 5px; box-shadow: 0 0 15px var(--border-pink); transition: 0.3s; border: 1px solid white; margin-bottom: 15px; }
+        .help-link { display: block; color: var(--neon-blue); text-decoration: none; font-weight: bold; font-size: 1rem; margin-top: 10px; }
 
-        /* --- TERMINAL --- */
-        #terminal-output { flex-grow: 1; overflow-y: auto; padding: 15px; border: 1px solid var(--border-pink); background: #000; color: var(--pink-accent); font-family: 'Courier New', monospace; margin-bottom: 10px; }
-        .term-input-line { display: flex; background: #000; padding: 10px; border: 1px solid var(--border-pink); }
-        #term-in { background: transparent; border: none; color: white; outline: none; flex-grow: 1; font-family: inherit; }
-
-        /* --- CERTYFIKAT --- */
-        .cert-card { max-width: 600px; margin: 40px auto; padding: 30px; border: 2px solid var(--neon-blue); background: #080808; text-align: center; }
-        .cert-code { font-family: 'Courier New', monospace; background: #111; padding: 15px; color: var(--neon-blue); border: 1px dashed var(--neon-blue); margin: 20px 0; word-break: break-all; }
-
-        /* --- ELEKTROINFO --- */
-        .faq-container { max-width: 1000px; margin: 0 auto; width: 100%; padding-bottom: 50px; }
+        /* --- ELEKTROINFO STYLE --- */
+        .faq-container { max-width: 1000px; margin: 0 auto; width: 100%; padding-bottom: 100px; }
         .faq-item { background: #111; border: 1px solid #222; margin-bottom: 10px; border-radius: 6px; overflow: hidden; }
         .faq-question { width: 100%; padding: 20px; background: none; border: none; color: white; text-align: left; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; background: #080808; }
-        .faq-item.active .faq-answer { max-height: 15000px; padding: 20px; border-top: 1px solid #222; }
+        .faq-item.active .faq-answer { max-height: 50000px; padding: 20px; border-top: 1px solid #222; }
         .highlight { color: var(--neon-blue); font-weight: bold; }
         .step-box { background: #1a1a1a; padding: 15px; margin-bottom: 15px; border-left: 3px solid var(--border-pink); line-height: 1.6; }
-        .trick-num { color: var(--border-pink); font-weight: bold; margin-right: 5px; }
+        .sub-header { color: var(--pink-accent); font-weight: bold; border-bottom: 1px solid #333; margin-top: 15px; display: block; }
     </style>
 </head>
 <body>
@@ -77,50 +66,25 @@
     <div id="home-page">
         <h1 style="font-size: 3rem; text-shadow: 0 0 20px var(--border-pink);">GORĄCE MAMUŚKI</h1>
         <button class="start-btn" onclick="showSection('terminal-section')">Otwórz terminal</button>
-        <button class="start-btn" onclick="showSection('cert-section')">Sprawdź Oryginalność</button>
     </div>
 
     <div id="terminal-section" class="content-section bg-black">
         <div id="terminal-output">
-            <div>=== GORĄCE MAMUŚKI PINK TERMINAL v5.1 ===</div>
-            <div>[STATUS] System Online...</div>
+            <div>=== GORĄCE MAMUŚKI PINK TERMINAL v5.5 ===</div>
             <div>[USER] Dejw_Devo1 | GPU: RTX 3060</div>
-            <div>Wpisz 'help' by zobaczyć komendy.</div>
             <br>
         </div>
-        <div class="term-input-line">
+        <div class="term-input-line" style="display: flex; background: #000; padding: 10px; border: 1px solid var(--border-pink);">
             <span>admin@pink-dev:> </span>
-            <input type="text" id="term-in" onkeydown="handleTerminal(event)">
-        </div>
-    </div>
-
-    <div id="cert-section" class="content-section bg-black">
-        <div class="cert-card">
-            <h2 style="color: var(--neon-blue);">CERTYFIKAT</h2>
-            <p>Ta strona jest Oficjalna.</p>
-            <div class="cert-code">UIXIAOMI!&ZASZYFROWANE!@#$%^&*()</div>
-            <div style="text-align: left; margin-top: 20px;">
-                <p>📧 Gmail: <span class="highlight">franekzz2293@gmail.com</span></p>
-                <p>📞 Telefon: <span class="highlight">514 600 607</span></p>
-            </div>
-        </div>
-    </div>
-
-    <div id="app-section" class="content-section bg-black">
-        <h2 style="text-align: center; color: var(--neon-blue);">ElektroApp</h2>
-        <div style="border: 1px solid #333; padding: 20px; background: #111; max-width: 800px; margin: 0 auto; text-align: center;">
-            <p>[ REPOZYTORIUM MOBILNE PUSTE ]</p>
+            <input type="text" id="term-in" onkeydown="handleTerminal(event)" style="background: transparent; border: none; color: white; outline: none; flex-grow: 1;">
         </div>
     </div>
 
     <div id="app-pc-section" class="content-section bg-black">
         <h2 style="text-align: center; color: var(--neon-blue);">ElektroAppPC</h2>
         <div style="border: 1px solid #333; padding: 40px; background: #111; max-width: 800px; margin: 0 auto; text-align: center;">
-            <p style="margin-bottom: 30px;">Dostępne narzędzia dla systemu Windows:</p>
-            <a href="https://www.mediafire.com/file/mwn6jqpy63mr9jk/Skaner.zip/file" target="_blank" class="dl-btn">
-                Pobierz WindowsPcInfoTRIAL V1.0
-            </a>
-            <p style="font-size: 0.8rem; color: #666; margin-top: 20px;">Skaner.zip (Narzędzie diagnostyczne)</p>
+            <a href="https://www.mediafire.com/file/mwn6jqpy63mr9jk/Skaner.zip/file" target="_blank" class="dl-btn">Pobierz WindowsPcInfoTRIAL V1.0</a>
+            <a href="https://youtu.be/boeOmcSPteM" target="_blank" class="help-link">Pomoc jak ten program odpalić (Tutorial Video)</a>
         </div>
     </div>
 
@@ -128,41 +92,55 @@
         <div class="faq-container">
             
             <div class="faq-item active">
-                <button class="faq-question" onclick="toggleFaq(this)">20 TRICKÓW NA ANDROIDA 16 (DLA TWOJEGO XIAOMI I INNYCH) <span>-</span></button>
+                <button class="faq-question" onclick="toggleFaq(this)">1. BIOS: WEJŚCIE I OBSŁUGA (KROK PO KROKU) <span>-</span></button>
                 <div class="faq-answer">
-                    <div class="step-box"><span class="trick-num">1. Xiaomi 17: Boost Charging Speed.</span> Ustawienia > Bateria > Dodatkowe funkcje.</div>
-                    <div class="step-box"><span class="trick-num">2. Xiaomi 17: Pływające okna.</span> Gest od dolnego rogu.</div>
-                    <div class="step-box"><span class="trick-num">3. Samsung: Rutyny.</span> Automatyzacja Wi-Fi i oszczędzania baterii.</div>
-                    <div class="step-box"><span class="trick-num">4. Motorola: Gest Karate.</span> Dwukrotne potrząśnięcie dla latarki.</div>
-                    <div class="step-box"><span class="trick-num">5. Motorola: Gest Aparatu.</span> Obrót nadgarstkiem.</div>
-                    <div class="step-box"><span class="trick-num">6. Android 16: Tryb Desktopowy.</span> Podłączenie monitora przez USB-C.</div>
-                    <div class="step-box"><span class="trick-num">7. Przestrzeń Prywatna.</span> Drugi sejf na aplikacje.</div>
-                    <div class="step-box"><span class="trick-num">8. Limit ładowania 80%.</span> Ochrona baterii w Xiaomi 17.</div>
-                    <div class="step-box"><span class="trick-num">9. Predictive Back.</span> Podgląd cofania strony.</div>
-                    <div class="step-box"><span class="trick-num">10. Auracast Audio.</span> Wiele par słuchawek naraz.</div>
-                    <div class="step-box"><span class="trick-num">11. Repair Mode.</span> Blokada danych dla serwisu.</div>
-                    <div class="step-box"><span class="trick-num">12. TCL NXTVISION.</span> Podbicie kolorów do HDR.</div>
-                    <div class="step-box"><span class="trick-num">13. Nagrywanie jednej apki.</span> Selektywne nagrywanie ekranu.</div>
-                    <div class="step-box"><span class="trick-num">14. AI Wallpaper.</span> Tapety generowane z tekstu.</div>
-                    <div class="step-box"><span class="trick-num">15. Szybkie kopiowanie.</span> Tekst z widoku ostatnich apek.</div>
-                    <div class="step-box"><span class="trick-num">16. Dynamiczne Widgety.</span> Przewijane stosy widgetów.</div>
-                    <div class="step-box"><span class="trick-num">17. Vivo Szybki Start.</span> Skróty z czytnika linii.</div>
-                    <div class="step-box"><span class="trick-num">18. Ochrona przed spamem.</span> AI filtruje połączenia botów.</div>
-                    <div class="step-box"><span class="trick-num">19. Eko-Powiadomienia.</span> Oszczędność ekranu.</div>
-                    <div class="step-box"><span class="trick-num">20. Wyłączanie AI Intelligence.</span> Pełna prywatność w ustawieniach.</div>
+                    <div class="step-box">
+                        <span class="highlight">Jak wejść:</span> Zrestartuj PC. Gdy ekran jest czarny, stukaj szybko <span class="highlight">Delete</span> (Gigabyte/MSI) lub <span class="highlight">F2</span> (ASUS/Laptopy).<br>
+                        <span class="highlight">Co robić w środku:</span> 
+                        • <b>XMP/DOCP:</b> Przyspiesza RAM. Wejdź w <i>Tweaker/OC</i> > <i>XMP</i> > wybierz <i>Profile 1</i>.<br>
+                        • <b>Boot Order:</b> Wybiera dysk startowy. Zakładka <i>Boot</i> > <i>Option #1</i> > wybierz swój SSD.<br>
+                        • <b>Zapis:</b> Kliknij <span class="highlight">F10</span> i Enter.
+                    </div>
                 </div>
             </div>
 
             <div class="faq-item">
-                <button class="faq-question" onclick="toggleFaq(this)">JAK WEJŚĆ DO BIOSU (PEŁNA INSTRUKCJA DLA KAŻDEGO) <span>+</span></button>
+                <button class="faq-question" onclick="toggleFaq(this)">2. ANDROID 16 & XIAOMI 17: INSTRUKCJA KROK PO KROKU <span>+</span></button>
                 <div class="faq-answer">
+                    <span class="sub-header">Dla Twojego Xiaomi 17:</span>
                     <div class="step-box">
-                        Aby wejść do <span class="highlight">BIOS/UEFI</span>, naciśnij <span class="highlight">Delete</span> lub <span class="highlight">F2</span> tuż po włączeniu komputera. <br><br>
-                        • <b>ASUS:</b> Del, F2<br>• <b>Dell:</b> F2, F12, Del<br>• <b>HP:</b> Esc, F10<br>• <b>Lenovo:</b> F2, Fn+F2, F1, Enter<br>• <b>MSI / Gigabyte / ASRock:</b> <span class="highlight">Del</span>, F2<br>• <b>Acer:</b> F2, Del<br><br>
-                        <b>Metoda Shift:</b> Przytrzymaj <span class="highlight">Shift</span> przy klikaniu "Uruchom ponownie" > Rozwiązywanie problemów > UEFI.
+                        <b>1. Boost Charging Speed:</b> (Szybsze ładowanie)<br>
+                        • <i>Jak:</i> Ustawienia > Bateria > Dodatkowe funkcje > Włącz "Zwiększ prędkość ładowania".<br>
+                        <b>2. Pływające Okna:</b> (Multitasking)<br>
+                        • <i>Jak:</i> Otwórz widok ostatnich aplikacji, przytrzymaj palec na apce i kliknij ikonę dwóch kwadratów.
+                    </div>
+
+                    <span class="sub-header">Nowości Android 16:</span>
+                    <div class="step-box">
+                        <b>3. Przestrzeń Prywatna:</b> (Ukryty profil na apki bankowe/prywatne)<br>
+                        • <i>Jak:</i> Ustawienia > Bezpieczeństwo i prywatność > Przestrzeń prywatna. Wymaga osobnego PINu.<br>
+                        <b>4. Limit ładowania 80%:</b> (Ratowanie baterii przed zużyciem)<br>
+                        • <i>Jak:</i> Ustawienia > Bateria > Ochrona baterii > Limit 80%. System nie pozwoli naładować wyżej, co przedłuża życie ogniwa o lata.
                     </div>
                 </div>
             </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">3. IPHONE: INSTRUKCJA KROK PO KROKU <span>+</span></button>
+                <div class="faq-answer">
+                    <div class="step-box">
+                        <b>1. Stuknięcie w tył:</b> (Uruchamia latarkę/aparat stuknięciem w obudowę)<br>
+                        • <i>Jak:</i> Ustawienia > Dostępność > Dotyk > Stuknięcie w tył > Dwukrotne stuknięcie > Wybierz akcję.<br><br>
+                        <b>2. Skanowanie dokumentów:</b> (Robi idealny skan do PDF)<br>
+                        • <i>Jak:</i> Otwórz aplikację <i>Notatki</i> > kliknij ikonę Aparatu > Skanuj dokumenty.<br><br>
+                        <b>3. Gładzik klawiatury:</b> (Precyzyjne poprawianie błędów)<br>
+                        • <i>Jak:</i> Podczas pisania przytrzymaj mocno klawisz <i>Spacja</i> – teraz możesz przesuwać kursor jak myszką.<br><br>
+                        <b>4. Ukrywanie zdjęć:</b> (Blokada albumu na FaceID)<br>
+                        • <i>Jak:</i> Wybierz zdjęcie > kliknij trzy kropki > Ukryj. Album "Ukryte" znajdziesz na samym dole w zakładce Albumy (wymaga FaceID).
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -172,7 +150,6 @@
             document.getElementById('home-page').style.display = 'none';
             document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
             document.getElementById(id).style.display = 'flex';
-            if(id === 'terminal-section') document.getElementById('term-in').focus();
         }
         function showHome() {
             document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
